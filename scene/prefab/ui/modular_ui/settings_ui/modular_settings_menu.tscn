@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn1obpqj8ugyt"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/settings_ui/modular_settings_menu.gd" id="1_dlju4"]
+[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://core/assets/font/OfficeCodePro-Light.otf" id="2_sja8n"]
+[ext_resource type="Texture2D" uid="uid://b78dmat8byghs" path="res://src/assets/texture/ui/x16_grey_big.png" id="3_imbkw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1wai"]
+
+[node name="modular_settings_menu" type="PanelContainer"]
+offset_right = 39.0
+offset_bottom = 15.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x1wai")
+script = ExtResource("1_dlju4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="menu_vbox" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="title_header" type="PanelContainer" parent="margin/menu_vbox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="hbox" type="HBoxContainer" parent="margin/menu_vbox/title_header"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="title_margin" type="MarginContainer" parent="margin/menu_vbox/title_header/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="menu_title" type="RichTextLabel" parent="margin/menu_vbox/title_header/hbox/title_margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_sja8n")
+bbcode_enabled = true
+text = "[center]settings[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="close_button" type="Button" parent="margin/menu_vbox/title_header/hbox"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("3_imbkw")
+expand_icon = true
+
+[node name="sep" type="HSeparator" parent="margin/menu_vbox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="settings_vbox" type="VBoxContainer" parent="margin/menu_vbox"]
+layout_mode = 2
+
+[connection signal="gui_input" from="margin/menu_vbox/title_header" to="." method="_on_title_header_gui_input"]
+[connection signal="button_down" from="margin/menu_vbox/title_header/hbox/close_button" to="." method="_on_close_button_button_down"]

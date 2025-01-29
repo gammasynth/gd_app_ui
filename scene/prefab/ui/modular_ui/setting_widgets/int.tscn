@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxga6k5qbhohb"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/number.gd" id="1_k88o3"]
+
+[node name="int_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_k88o3")
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]

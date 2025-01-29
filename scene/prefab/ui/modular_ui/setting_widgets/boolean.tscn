@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b56k7ipvoy5op"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/boolean.gd" id="1_n4lp5"]
+
+[node name="boolean_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n4lp5")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+
+[connection signal="button_down" from="CheckBox" to="." method="_on_check_box_button_down"]

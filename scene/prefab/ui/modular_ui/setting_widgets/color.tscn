@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvy5s73a7u2b1"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/color.gd" id="1_oi700"]
+
+[node name="color_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_oi700")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

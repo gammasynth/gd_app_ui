@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy3q2jm48weix"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/vector_3.gd" id="1_s6m6k"]
+
+[node name="vector3_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s6m6k")
+
+[node name="hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SpinBoxX" type="SpinBox" parent="hbox"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "x"
+
+[node name="SpinBoxY" type="SpinBox" parent="hbox"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "y"
+
+[node name="SpinBoxZ" type="SpinBox" parent="hbox"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "z"
+
+[connection signal="value_changed" from="hbox/SpinBoxX" to="." method="_on_spin_box_x_value_changed"]
+[connection signal="value_changed" from="hbox/SpinBoxY" to="." method="_on_spin_box_y_value_changed"]
+[connection signal="value_changed" from="hbox/SpinBoxZ" to="." method="_on_spin_box_z_value_changed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dehtxy43gqic"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/string.gd" id="1_pl6nc"]
+
+[node name="string_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pl6nc")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(200, 28)
+layout_mode = 2
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://b38qr3oeoi3k6"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/generic_modular_ui/modular_background.gd" id="1_54fbl"]
+
+[node name="modular_background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_54fbl")
+
+[node name="background_color_rect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="background_texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background_ vpc" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="background_vp" type="SubViewport" parent="background_ vpc"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4

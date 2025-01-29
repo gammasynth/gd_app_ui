@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjrpjiuxx5spj"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/setting_widget.gd" id="1_xgnos"]
+
+[node name="setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_xgnos")

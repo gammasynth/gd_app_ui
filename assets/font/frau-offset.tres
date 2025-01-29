@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cur23vi1ru8rc"]
+
+[ext_resource type="FontFile" uid="uid://1tytv6dg1ux6" path="res://core/assets/font/frau.ttf" id="1_dkqof"]
+
+[resource]
+base_font = ExtResource("1_dkqof")
+opentype_features = {
+1667329140: 0
+}
+spacing_top = -8

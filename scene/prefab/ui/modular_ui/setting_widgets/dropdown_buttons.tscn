@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bggjt32jg7pnx"]
+
+[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/setting_widgets/dropdown_buttons.gd" id="1_76okw"]
+
+[node name="dropdown_buttons_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_76okw")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 2
+
+[node name="Select" type="PopupMenu" parent="MenuBar"]
+
+[connection signal="index_pressed" from="MenuBar/Select" to="." method="_on_select_index_pressed"]
