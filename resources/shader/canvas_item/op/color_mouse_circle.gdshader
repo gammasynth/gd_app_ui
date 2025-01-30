@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://core/resources/shader/lib/shapes/circle_color.gdshaderinc"
+#include "res://lib/gd_app_ui/resources/shader/lib/shapes/circle_color.gdshaderinc"
 
 uniform vec2 mouse_position;
 
@@ -10,7 +10,7 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	//vec2 center = mouse_control_position_main_window / 
+	//vec2 center = mouse_control_position_main_window /
 	vec4 color = color_circle(UV, mouse_position);
 	//COLOR = vec4(vec3(dist), 1.0);
 	COLOR = color;
