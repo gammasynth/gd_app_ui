@@ -1,4 +1,4 @@
-extends Control
+extends DatabaseControl
 
 class_name ModularCutscene
 

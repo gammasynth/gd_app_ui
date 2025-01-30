@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b38qr3oeoi3k6"]
 
-[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/generic_modular_ui/modular_background.gd" id="1_54fbl"]
+[ext_resource type="Script" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_background.gd" id="1_54fbl"]
 
 [node name="modular_background" type="Control"]
 layout_mode = 3
