@@ -9,6 +9,7 @@ static var ui: AppUI
 
 var loading_screen : ModularLoadingScreen: get = _get_loading_screen
 
+@export var custom_loading_screen_scene_path: String = ""
 func _get_loading_screen() -> ModularLoadingScreen: 
 	if loading_screen and is_instance_valid(loading_screen): return loading_screen
 	var screen: ModularLoadingScreen
@@ -16,8 +17,10 @@ func _get_loading_screen() -> ModularLoadingScreen:
 	#if app.registry_system: 
 		#var scene = Registry.pull("generic_modular_ui", "modular_loading_screen.tscn")
 		#if scene: screen = scene.instantiate()
+	var loading_screen_path:String = "res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.tscn"
+	if not custom_loading_screen_scene_path.is_empty(): loading_screen_path = custom_loading_screen_scene_path;
 	
-	if not screen: screen = load("res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.tscn").instantiate()
+	if not screen: screen = load(loading_screen_path).instantiate()
 	loading_screen = screen
 	return screen
 
@@ -110,6 +113,10 @@ func start_loading_screen() -> Error:
 	app.ui_subduing = true
 	app.state = app.APP_STATES.LOADING
 	await Make.child(loading_screen, self)
+	
+	loading_screen.setup_loader(App.load_tracker)
+	
+	
 	app.ui_subduing = false
 	app.ui_mercy.emit()
 	return OK

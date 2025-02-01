@@ -55,3 +55,7 @@ mouse_filter = 2
 max_value = 0.0
 step = 1.0
 show_percentage = false
+
+[node name="description_text" type="RichTextLabel" parent="menu_margin/vbox"]
+layout_mode = 2
+mouse_filter = 2

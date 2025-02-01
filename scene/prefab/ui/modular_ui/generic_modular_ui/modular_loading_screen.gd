@@ -10,6 +10,7 @@ class_name ModularLoadingScreen
 @onready var splash_texture: TextureRect = $menu_margin/vbox/splash_texture
 @onready var event_text: RichTextLabel = $menu_margin/vbox/event_text
 @onready var progress_bar: ProgressBar = $menu_margin/vbox/progress_bar
+@onready var description_text: RichTextLabel = $menu_margin/vbox/description_text
 
 
 @export var margin_all:int = 0:
@@ -47,60 +48,16 @@ class_name ModularLoadingScreen
 		bar_size = f
 
 
-@export var additive_load:bool = true
 
-var connected_workers:int = 0
-var finished_workers:int = 0
+var load_tracker: LoadTracker = null
 
-func _ready_up() -> Error:
-	print("initialized.")
-	return OK
+#func _ready_up() -> Error:
+	#print("initialized.")
+	#return OK
 
-
-func registry_started(total_workload:int):
-	print("total workers: " + str(connected_workers))
-	setup_loader(total_workload)
-
-func registry_worked(amt):
-	handle_registry_work_step(amt)
-
-func registry_finished():
-	finished_workers += 1
-	print("workers finished: " + str(finished_workers))
-	while finished_workers > connected_workers:
-		finished_workers -= 1
-	if connected_workers > 0 and finished_workers == connected_workers:
-			print("Registry finished, but no Core instance to return to!")
-
-
-
-func handle_registry_work_step(work_amount:int) -> Error:
-	await push_progress(work_amount)
-	print("work step " + str(work_amount))
-	await RenderingServer.frame_post_draw
-	return OK
-
-
-func setup_loader(final_value:int) -> Error:
-	if not progress_bar.is_node_ready(): await progress_bar.ready
-	if additive_load:
-		#progress_bar.value = 0
-		progress_bar.max_value += final_value# + 10000000
-	else:
-		progress_bar.value = 0
-		progress_bar.max_value = final_value# + 10000000
-	await RenderingServer.frame_post_draw
-	return OK
-
-
-func push_work_text(work_text:String) -> Error:
-	event_text.text = work_text
-	await RenderingServer.frame_post_draw
-	return OK
-
-
-
-func push_progress(value:int) -> Error:
-	progress_bar.value += value
-	await RenderingServer.frame_post_draw
-	return OK
+func setup_loader(_load_tracker:LoadTracker):
+	load_tracker = _load_tracker
+	load_tracker.progress_bar = progress_bar
+	load_tracker.event_text = event_text
+	load_tracker.description_text = description_text
+	load_tracker.finished.connect(Make.fade_delete.bind(self))
