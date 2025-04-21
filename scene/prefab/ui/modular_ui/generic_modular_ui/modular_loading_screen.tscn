@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwu54n2r4muxr"]
 
-[ext_resource type="Script" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.gd" id="1_dhlv7"]
+[ext_resource type="Script" uid="uid://ckmpb2fj5gay7" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.gd" id="1_dhlv7"]
 [ext_resource type="PackedScene" uid="uid://b38qr3oeoi3k6" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_background.tscn" id="1_w3brf"]
 
 [node name="modular_loading_screen" type="Control"]
@@ -44,6 +44,14 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
+[node name="subtitle_text" type="RichTextLabel" parent="menu_margin/vbox"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="event_text" type="RichTextLabel" parent="menu_margin/vbox"]
 layout_mode = 2
 mouse_filter = 2
@@ -59,3 +67,6 @@ show_percentage = false
 [node name="description_text" type="RichTextLabel" parent="menu_margin/vbox"]
 layout_mode = 2
 mouse_filter = 2
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

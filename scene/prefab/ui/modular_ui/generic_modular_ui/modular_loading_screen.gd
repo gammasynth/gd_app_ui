@@ -8,6 +8,9 @@ class_name ModularLoadingScreen
 
 @onready var title_text: RichTextLabel = $menu_margin/vbox/title_text
 @onready var splash_texture: TextureRect = $menu_margin/vbox/splash_texture
+@onready var subtitle_text: RichTextLabel = $menu_margin/vbox/subtitle_text
+
+
 @onready var event_text: RichTextLabel = $menu_margin/vbox/event_text
 @onready var progress_bar: ProgressBar = $menu_margin/vbox/progress_bar
 @onready var description_text: RichTextLabel = $menu_margin/vbox/description_text

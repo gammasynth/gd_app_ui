@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://csuu6if67icdf"]
 
-[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/settings_ui/modular_setting_option.gd" id="1_cqo8n"]
-[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://core/assets/font/OfficeCodePro-Light.otf" id="1_etic5"]
+[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://lib/gd_app_ui/assets/font/OfficeCodePro-Light.otf" id="1_etic5"]
+
+[sub_resource type="Resource" id="Resource_d8bku"]
+metadata/__load_path__ = "res://core/scene/prefab/ui/modular_ui/settings_ui/modular_setting_option.gd"
 
 [node name="modular_setting_option" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -10,7 +12,7 @@ theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
-script = ExtResource("1_cqo8n")
+script = SubResource("Resource_d8bku")
 
 [node name="hbox" type="HBoxContainer" parent="."]
 layout_mode = 2

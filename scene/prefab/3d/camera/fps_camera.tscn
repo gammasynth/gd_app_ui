@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu0dq0xjwt0mb"]
 
-[ext_resource type="Script" path="res://core/scene/prefab/3d/camera/fps_camera.gd" id="1_fyfmd"]
+[sub_resource type="Resource" id="Resource_kmkar"]
+metadata/__load_path__ = "res://core/scene/prefab/3d/camera/fps_camera.gd"
 
 [node name="fps_camera" type="Node3D"]
-script = ExtResource("1_fyfmd")
+script = SubResource("Resource_kmkar")
 
 [node name="Camera3D" type="Camera3D" parent="."]

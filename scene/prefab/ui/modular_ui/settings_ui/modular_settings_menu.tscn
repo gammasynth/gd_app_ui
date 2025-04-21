@@ -1,10 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bn1obpqj8ugyt"]
 
-[ext_resource type="Script" path="res://core/scene/prefab/ui/modular_ui/settings_ui/modular_settings_menu.gd" id="1_dlju4"]
-[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://core/assets/font/OfficeCodePro-Light.otf" id="2_sja8n"]
-[ext_resource type="Texture2D" uid="uid://b78dmat8byghs" path="res://src/assets/texture/ui/x16_grey_big.png" id="3_imbkw"]
+[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://lib/gd_app_ui/assets/font/OfficeCodePro-Light.otf" id="2_sja8n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1wai"]
+
+[sub_resource type="Resource" id="Resource_rk0k4"]
+metadata/__load_path__ = "res://core/scene/prefab/ui/modular_ui/settings_ui/modular_settings_menu.gd"
+
+[sub_resource type="Resource" id="Resource_r53hn"]
+metadata/__load_path__ = "res://src/assets/texture/ui/x16_grey_big.png"
 
 [node name="modular_settings_menu" type="PanelContainer"]
 offset_right = 39.0
@@ -12,7 +16,7 @@ offset_bottom = 15.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_x1wai")
-script = ExtResource("1_dlju4")
+script = SubResource("Resource_rk0k4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -62,7 +66,7 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("3_imbkw")
+icon = SubResource("Resource_r53hn")
 expand_icon = true
 
 [node name="sep" type="HSeparator" parent="margin/menu_vbox"]
