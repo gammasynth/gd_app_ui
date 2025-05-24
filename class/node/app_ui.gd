@@ -37,6 +37,10 @@ var cutscene : ModularCutscene :
 var splash_screen : ModularCutscene : get = _get_splash_screen
 
 
+@export var current_scene : Control = null
+@export var requested_next_scene : Control = null
+
+
 func _get_splash_screen() -> ModularCutscene: 
 	var screen: ModularCutscene
 	if splash_screen and is_instance_valid(splash_screen): screen = splash_screen
@@ -62,7 +66,7 @@ func _initialized() -> void:
 	if ui: push_error("No, only use one instance of AppUI.")
 	ui = self
 	
-	app.app_starting.connect(app_starting)
+	app.app_starting.connect(app_ui_starting)
 	app.pre_load.connect(start_loading_screen)
 
 func _ready_up() -> Error:
@@ -70,7 +74,7 @@ func _ready_up() -> Error:
 	return OK
 
 
-func app_starting() -> void: 
+func app_ui_starting() -> void: 
 	app.ui_subduing = true
 	
 	setup_window()
@@ -131,6 +135,29 @@ func cutscene_ended() -> void:
 func loading_screen_finished() -> void:
 	loading_screen.queue_free()
 
+
+
+static func request_scene(new_scene:Control) -> void:
+	if not ui: return
+	
+	if ui.current_scene == null:
+		ui.set_scene(new_scene)
+	else:
+		ui.requested_next_scene = new_scene
+
+
+func set_scene(new_scene:Control) -> void:
+	if current_scene:
+		if has_node(current_scene.get_path()): remove_child(current_scene)
+	
+	add_child(new_scene)
+	current_scene = new_scene
+	
+	requested_next_scene = null
+
+
+func _process(delta: float) -> void:
+	if requested_next_scene != null: set_scene(requested_next_scene)
 
 
 static func resize(new_size:Vector2i=Vector2i(0, 0)) -> void:
