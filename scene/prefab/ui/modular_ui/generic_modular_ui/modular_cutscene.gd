@@ -17,7 +17,7 @@ signal finished
 
 @export var finish_on_audio: bool = false
 
-@onready var modular_background: ModularBackground = $modular_background
+#@onready var modular_background: ModularBackground = $modular_background
 @onready var video: VideoStreamPlayer = $VideoStreamPlayer
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
@@ -45,7 +45,9 @@ func try_play():
 	if not audio.stream: check_audio_stream()
 	
 	if not video.stream: check_stream()
-	if not video.stream and not audio.stream: finish_cutscene()
+	if not video.stream and not audio.stream: 
+		finish_cutscene()
+		return
 	
 	started = true
 	
@@ -58,7 +60,8 @@ func check_stream():
 		stream = load(stream_path)
 	
 	if stream is VideoStream: 
-		video.stream = stream; return
+		video.stream = stream
+	
 
 func check_audio_stream():
 	if audio_stream_path:
@@ -68,15 +71,20 @@ func check_audio_stream():
 		audio.stream = audio_stream; return
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if skippable and not done:
-		if event is InputEventMouseButton and event.pressed: finish_cutscene()
+		if event is InputEventMouseButton and event.pressed: 
+			finish_cutscene()
+			return
+		
 		if event.is_pressed(): finish_cutscene()
 
 
 func finish_cutscene() -> void:
 	if done: return
 	done = true
+	video.stop()
+	audio.stop()
 	finished.emit()
 
 func _on_video_stream_player_finished() -> void:

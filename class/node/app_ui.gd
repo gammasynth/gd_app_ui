@@ -7,6 +7,11 @@ signal splashed
 static var app: App
 static var ui: AppUI
 
+const BASE_WINDOW_SIZE := Vector2(1152, 648)
+
+@export var fixed_window_size := Vector2(0,0)
+
+
 var loading_screen : ModularLoadingScreen: get = _get_loading_screen
 
 @export var custom_loading_screen_scene_path: String = ""
@@ -103,11 +108,13 @@ func app_ui_starting() -> void:
 
 func setup_window() -> void:
 	#get_window().borderless = true
-	get_window().min_size = Vector2i(0, 0)
+	
+	
+	get_window().min_size = fixed_window_size
 	get_tree().get_root().set_transparent_background(true)
 	get_window().set_wrap_controls(true)
 	
-	get_window().size = Vector2i(250, 0)
+	get_window().size = Vector2i(250, fixed_window_size.y)
 	
 	refresh_window()
 
