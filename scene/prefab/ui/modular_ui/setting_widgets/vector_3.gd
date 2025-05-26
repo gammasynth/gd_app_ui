@@ -9,7 +9,7 @@ func _widget_setup() -> Error:
 	setup_spin_box_widget(spin_box_x)
 	setup_spin_box_widget(spin_box_y)
 	setup_spin_box_widget(spin_box_z)
-	return await Cast.wait()
+	return OK
 
 
 func _on_spin_box_x_value_changed(value: float) -> void:

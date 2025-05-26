@@ -1,12 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bggjt32jg7pnx"]
 
-[sub_resource type="Resource" id="Resource_wo4g7"]
-metadata/__load_path__ = "res://core/scene/prefab/ui/modular_ui/setting_widgets/dropdown_buttons.gd"
+[ext_resource type="Script" uid="uid://dvu5shrugi03p" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/dropdown_buttons.gd" id="1_ju75o"]
 
 [node name="dropdown_buttons_setting_widget" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-script = SubResource("Resource_wo4g7")
+script = ExtResource("1_ju75o")
 
 [node name="MenuBar" type="MenuBar" parent="."]
 layout_mode = 2

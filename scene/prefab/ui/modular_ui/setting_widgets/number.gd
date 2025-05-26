@@ -4,7 +4,7 @@ extends SettingWidget
 
 func _widget_setup() -> Error:
 	setup_spin_box_widget(spin_box)
-	return await Cast.wait()
+	return OK
 
 
 func _on_spin_box_value_changed(value: float) -> void:

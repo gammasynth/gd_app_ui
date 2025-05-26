@@ -31,7 +31,7 @@ static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOptio
 	
 	var new_setting: ModularSettingOption
 	var use_registry: bool = false
-	if Core.instance: if Core.instance.registry_system: use_registry = true
+	if App.app.registry_system: use_registry = true
 	
 	if use_registry: new_setting = Registry.pull("modular_ui", "modular_setting_option.tscn").instantiate()
 	else: new_setting = load("res://core/scene/prefab/ui/modular_ui/modular_setting_option.tscn").instantiate()
@@ -68,7 +68,7 @@ func _ready() -> void:
 		
 		var widget: SettingWidget = widget_packed_scene.instantiate()
 		
-		await Cast.make_node_child(widget, widgets_hbox)
+		await Make.child(widget, widgets_hbox)
 		
 		var value: Variant = null; if widget_params.size() > 0 and setting_values.size() - 1 <= widget_index: value = setting_values[widget_index]
 		var params: Dictionary = {}; if widget_params.size() > 0 and widget_params.size() - 1 <= widget_index: params = widget_params[widget_index]

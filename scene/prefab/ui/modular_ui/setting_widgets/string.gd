@@ -9,7 +9,7 @@ func _widget_setup() -> Error:
 	if widget_params.has("alignment"): line_edit.alignment = widget_params.get("alignment")
 	if widget_params.has("max_length"): line_edit.max_length = widget_params.get("max_length")
 	if widget_params.has("editable"): line_edit.editable = widget_params.get("editable")
-	return await Cast.wait()
+	return OK
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:

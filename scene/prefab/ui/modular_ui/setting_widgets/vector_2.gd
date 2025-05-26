@@ -7,7 +7,7 @@ extends SettingWidget
 func _widget_setup() -> Error:
 	setup_spin_box_widget(spin_box_x)
 	setup_spin_box_widget(spin_box_y)
-	return await Cast.wait()
+	return OK
 
 
 

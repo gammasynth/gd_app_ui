@@ -2,7 +2,9 @@ extends Registry
 
 func _gather_subregistry_paths() -> Error:
 	#subregistry_paths.append("res://src/registry/entities/items.gd")
+	#check_library_for_registries("res://", true, "settings_ui")
 	return OK
+
 
 func _boot_registry():
 	# override this function to set name and what directories to load files from for this registry
@@ -12,6 +14,7 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://core/scene/prefab/ui/modular_ui/settings_ui/"
+		"res://lib/gd_app_ui/scene/prefab/ui/modular_ui/settings_ui/"
 	]
+	#search_for_loadable_content_by_name("res://", "settings_ui")
 	return OK

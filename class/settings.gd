@@ -69,13 +69,13 @@ func convert_to_dictionary() -> Dictionary:
 static func initialize_settings(_settings_name:String, _settings_file_path:String="user://settings/") -> Settings:
 	
 	if all_settings.has(_settings_name):
-		Cast.chat(str("Settings.initialize_settings | settings name already exists, trying to overwrite? @" + _settings_name))
+		print(str("Settings.initialize_settings | settings name already exists, trying to overwrite? @" + _settings_name))
 		
 		var old_setting: Settings = all_settings.get(_settings_name)
 		if not old_setting:
-			Cast.chat(str("Settings.initialize_settings | allowing overwrite at empty entry? @" + _settings_name))
+			print(str("Settings.initialize_settings | allowing overwrite at empty entry? @" + _settings_name))
 		else:
-			Cast.chat(str("Settings.initialize_settings | returning existing Settings entry, overwrite refused. @" + _settings_name + ", path@ " + _settings_file_path))
+			print(str("Settings.initialize_settings | returning existing Settings entry, overwrite refused. @" + _settings_name + ", path@ " + _settings_file_path))
 			return old_setting
 	
 	var dir: DirAccess = DirAccess.open("user://")
@@ -130,7 +130,7 @@ func finish_prepare_settings() -> void:
 
 func save_settings() -> Error:
 	var settings_dict: Dictionary = convert_to_dictionary()
-	return FileManager.save_dict_file(settings_dict, settings_file_path)
+	return File.save_dict_file(settings_dict, settings_file_path)
 
 
 func load_settings() -> bool:
@@ -138,7 +138,7 @@ func load_settings() -> bool:
 	
 	# load old existing settings file, if it has the same property and name hash.
 	# this way, if a code update changes the structure of a Settings file, the old settings file will be discarded to avoid error.
-	var loaded_settings_obj_dict = FileManager.load_dict_file(settings_file_path)
+	var loaded_settings_obj_dict = File.load_dict_file(settings_file_path)
 	var loaded_settings_name: String = loaded_settings_obj_dict.get("NAME")
 	var loaded_settings_values_dict: Dictionary = loaded_settings_obj_dict.get("ALL_SETTING_VALUES")
 	var loaded_property_names: Array = loaded_settings_values_dict.keys()
@@ -162,10 +162,10 @@ func load_settings() -> bool:
 		var setting_callable: Callable = this_setting["SETTING_CHANGE_FUNCTION"]
 		for i in vals.size():
 			var val: Variant = vals[i]
-			print(str("LOADED SETTING: [type : value]"))
+			chat(str("LOADED SETTING: [type : value]"))
 			
-			print(type_string(typeof(val)))
-			print(val)
+			#print(type_string(typeof(val)))
+			#print(val)
 			
 			if val is Dictionary:
 				if val.size() == 1 and val.has("COLOR"):
@@ -203,7 +203,7 @@ func instance_ui_window(ui_window_parent:Node, at_position:Vector2i=Vector2i(-1,
 	#window.keep_title_visible = true
 	#window.borderless = true
 	
-	await Cast.make_node_child(window, ui_window_parent)
+	await Make.child(window, ui_window_parent)
 	window.set_flag(Window.FLAG_RESIZE_DISABLED, true)
 	
 	var this_ui: ModularSettingsMenu = await ModularSettingsMenu.build_settings_ui(self, window)

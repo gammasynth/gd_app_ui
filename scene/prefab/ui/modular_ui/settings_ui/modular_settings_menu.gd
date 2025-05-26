@@ -16,16 +16,15 @@ var drag_offset: Vector2i
 static func build_settings_ui(settings_obj:Settings, ui_parent: Node = null) -> ModularSettingsMenu:
 	
 	var settings_ui: ModularSettingsMenu
-	var use_registry: bool = false
-	if Core.instance: if Core.instance.registry_system: use_registry = true
+	var use_registry: bool = App.app.registry_system
 	
 	if use_registry: settings_ui = Registry.pull("modular_settings", "modular_settings_menu.tscn").instantiate()
-	else: settings_ui = load("res://core/scene/prefab/ui/modular_ui/settings_ui/modular_settings_menu.tscn").instantiate()
+	else: settings_ui = load("res://lib/gd_app_ui/scene/prefab/ui/modular_ui/settings_ui/modular_settings_menu.tscn").instantiate()
 	
 	if not ui_parent:
-		if Core.instance: ui_parent = Core.instance.get_window()
+		if App.ui: ui_parent = App.ui
 	
-	if ui_parent: await Cast.make_node_child(settings_ui, ui_parent)
+	if ui_parent: await Make.child(settings_ui, ui_parent)
 	
 	settings_ui.settings = settings_obj
 	
@@ -39,7 +38,7 @@ static func build_settings_ui(settings_obj:Settings, ui_parent: Node = null) -> 
 		var option:ModularSettingOption = ModularSettingOption.get_setting_ui(setting_dictionary)
 		option.modular_settings = settings_ui
 		
-		if ui_parent: await Cast.make_node_child(option, settings_ui.settings_vbox)
+		if ui_parent: await Make.child(option, settings_ui.settings_vbox)
 	
 	return settings_ui
 

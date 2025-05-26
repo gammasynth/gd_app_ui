@@ -12,6 +12,5 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://core/assets/font/"
 	]
 	return OK

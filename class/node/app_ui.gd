@@ -71,13 +71,11 @@ func _initialized() -> void:
 	app = App.app
 	if ui: push_error("No, only use one instance of AppUI.")
 	ui = self
+	if App.ui != self: App.ui = self
 	
 	app.app_starting.connect(app_ui_starting)
 	app.pre_load.connect(start_loading_screen)
 
-func _ready_up() -> Error:
-	if App.ui != self: App.ui = self
-	return OK
 
 
 func app_ui_starting() -> void: 

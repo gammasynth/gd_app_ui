@@ -5,7 +5,7 @@ extends SettingWidget
 
 func _widget_setup() -> Error:
 	setup_button(check_box)
-	return await Cast.wait()
+	return OK
 
 
 func _on_check_box_button_down() -> void:

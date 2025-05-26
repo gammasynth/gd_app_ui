@@ -2,6 +2,7 @@ extends Registry
 
 func _gather_subregistry_paths() -> Error:
 	#subregistry_paths.append("res://src/registry/entities/items.gd")
+	#check_library_for_registries("res://", true, "generic_modular_ui")
 	return OK
 
 func _boot_registry():
@@ -12,6 +13,7 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://core/scene/prefab/ui/modular_ui/generic_modular_ui/"
+		"res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/"
 	]
+	#search_for_loadable_content_by_name("res://", "generic_modular_ui")
 	return OK

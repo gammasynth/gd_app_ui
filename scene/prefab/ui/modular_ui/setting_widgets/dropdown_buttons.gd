@@ -29,7 +29,7 @@ func _widget_setup() -> Error:
 		
 		item_index += 1
 	
-	return await Cast.wait()
+	return OK
 
 
 

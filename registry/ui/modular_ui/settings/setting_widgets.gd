@@ -2,6 +2,7 @@ extends Registry
 
 func _gather_subregistry_paths() -> Error:
 	#subregistry_paths.append("res://src/registry/entities/items.gd")
+	check_library_for_registries("res://", true, "setting_widgets")
 	return OK
 
 func _boot_registry():
@@ -12,11 +13,12 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://core/scene/prefab/ui/modular_ui/setting_widgets/"
+		"res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/"
 	]
 	
-	var dir = DirAccess.open("res://")
-	if dir.dir_exists("res://src/scene/prefab/ui/modular_ui/setting_widgets/"):
-		directories_to_load.append("res://src/scene/prefab/ui/modular_ui/setting_widgets/")
+	#var dir = DirAccess.open("res://")
+	#if dir.dir_exists("res://src/scene/prefab/ui/modular_ui/setting_widgets/"):
+		#directories_to_load.append("res://src/scene/prefab/ui/modular_ui/setting_widgets/")
+	#search_for_loadable_content_by_name("res://", "setting_widgets")
 	
 	return OK

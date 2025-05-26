@@ -12,5 +12,7 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
+		
 	]
+	#search_for_loadable_content_by_name("res://", "resources")
 	return OK

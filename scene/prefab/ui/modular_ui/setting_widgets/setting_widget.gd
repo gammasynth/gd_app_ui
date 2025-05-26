@@ -20,7 +20,7 @@ func widget_setup(_widget_index: int, _setting_change_function: Callable, _defau
 	return await _widget_setup()
 
 func _widget_setup() -> Error:
-	return await Cast.wait()
+	return OK
 
 
 func setup_spin_box_widget(this_spin_box:SpinBox):
