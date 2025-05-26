@@ -9,6 +9,7 @@ static var ui: AppUI
 
 const BASE_WINDOW_SIZE := Vector2(1152, 648)
 
+@export var window_minimum_size := Vector2(0,0)
 @export var fixed_window_size := Vector2(0,0)
 
 
@@ -110,11 +111,11 @@ func setup_window() -> void:
 	#get_window().borderless = true
 	
 	
-	get_window().min_size = fixed_window_size
+	get_window().min_size = Vector2i(window_minimum_size)
 	get_tree().get_root().set_transparent_background(true)
 	get_window().set_wrap_controls(true)
 	
-	get_window().size = Vector2i(250, fixed_window_size.y)
+	get_window().size = Vector2i(fixed_window_size)
 	
 	refresh_window()
 
