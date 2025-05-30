@@ -18,17 +18,14 @@ var loading_screen : ModularLoadingScreen: get = _get_loading_screen
 @export var custom_loading_screen_scene_path: String = ""
 func _get_loading_screen() -> ModularLoadingScreen: 
 	if loading_screen and is_instance_valid(loading_screen): return loading_screen
-	var screen: ModularLoadingScreen
-	
 	#if app.registry_system: 
 		#var scene = Registry.pull("generic_modular_ui", "modular_loading_screen.tscn")
 		#if scene: screen = scene.instantiate()
 	var loading_screen_path:String = "res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.tscn"
 	if not custom_loading_screen_scene_path.is_empty(): loading_screen_path = custom_loading_screen_scene_path;
 	
-	if not screen: screen = load(loading_screen_path).instantiate()
-	loading_screen = screen
-	return screen
+	if not loading_screen: loading_screen = load(loading_screen_path).instantiate()
+	return loading_screen
 
 var cutscene : ModularCutscene :
 	set(c):
@@ -163,6 +160,8 @@ func set_scene(new_scene:Control) -> void:
 
 
 func _process(delta: float) -> void:
+	# TODO
+	#  this should probably be done somewhere else!
 	if requested_next_scene != null: set_scene(requested_next_scene)
 
 

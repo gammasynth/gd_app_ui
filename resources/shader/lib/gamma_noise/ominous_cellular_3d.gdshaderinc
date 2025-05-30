@@ -1,5 +1,5 @@
 
-#include "res://core/resources/shader/lib/noise/cellular3d.gdshaderinc"
+#include "res://lib/gd_app_ui/resources/shader/lib/noise/cellular3d.gdshaderinc"
 
 uniform vec4 noise_albedo: source_color = vec4(1.0);
 

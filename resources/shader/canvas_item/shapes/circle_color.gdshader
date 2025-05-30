@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://core/resources/shader/lib/shapes/circle_color.gdshaderinc"
+#include "res://lib/gd_app_ui/resources/shader/lib/shapes/circle_color.gdshaderinc"
 
 void fragment() {
 	// Called for every pixel the material is visible on.
