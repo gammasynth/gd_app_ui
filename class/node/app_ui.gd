@@ -25,7 +25,10 @@ func _get_loading_screen() -> ModularLoadingScreen:
 	if not custom_loading_screen_scene_path.is_empty(): loading_screen_path = custom_loading_screen_scene_path;
 	
 	if not loading_screen: loading_screen = load(loading_screen_path).instantiate()
+	current_loading_screen = loading_screen
 	return loading_screen
+
+var current_loading_screen : ModularLoadingScreen = null
 
 var cutscene : ModularCutscene :
 	set(c):
