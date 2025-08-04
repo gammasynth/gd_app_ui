@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://6x5gndgewqke"]
+
+[ext_resource type="Script" uid="uid://bj6omqqvni0qq" path="res://lib/gd_app_ui/scene/prefab/ui/chat_message_h_box.gd" id="1_jtwwj"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aokmq"]
+properties/0/path = NodePath("PlayerNameLabel:text")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("MessageLabel:text")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:player_icon_path")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="ChatMessageHBox" type="HBoxContainer"]
+custom_minimum_size = Vector2(475, 45)
+script = ExtResource("1_jtwwj")
+
+[node name="PlayerIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="PlayerNameLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "player:"
+scroll_active = false
+
+[node name="MessageLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Message"
+scroll_active = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.5
+delta_interval = 0.5
+replication_config = SubResource("SceneReplicationConfig_aokmq")

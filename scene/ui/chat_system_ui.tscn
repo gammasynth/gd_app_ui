@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7uopl8sw2quv"]
+
+[ext_resource type="Script" uid="uid://bq81ap0w0bt4" path="res://lib/gd_app_ui/scene/ui/chat_system_ui.gd" id="1_qdy5r"]
+
+[node name="ChatSystem" type="Control" groups=["ChatSystem"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qdy5r")
+
+[node name="ChatPanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -222.0
+offset_right = 508.0
+grow_vertical = 0
+
+[node name="ChatHBox" type="HBoxContainer" parent="ChatPanelContainer"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ChatVBox" type="VBoxContainer" parent="ChatPanelContainer/ChatHBox"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatPanelContainer/ChatHBox/ChatVBox"]
+custom_minimum_size = Vector2(500, 175)
+layout_mode = 2
+
+[node name="ChatMessagesVBox" type="VBoxContainer" parent="ChatPanelContainer/ChatHBox/ChatVBox/ScrollContainer"]
+custom_minimum_size = Vector2(475, 175)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="ChatPanelContainer/ChatHBox/ChatVBox"]
+custom_minimum_size = Vector2(500, 35)
+layout_mode = 2
+placeholder_text = "Type here to chat..."
+max_length = 37
+
+[node name="ChatSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/scene/prefab/ui/chat_message_h_box.tscn")
+spawn_path = NodePath("../ChatPanelContainer/ChatHBox/ChatVBox/ScrollContainer/ChatMessagesVBox")
+
+[node name="PromptChatMessage" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.329412)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.2
+offset_right = 468.0
+offset_bottom = -9.20001
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "Press 'T' to toggle Chat."
+scroll_active = false
+
+[node name="ChatMessageCount" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.329412)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -54.2
+offset_right = 468.0
+offset_bottom = -32.2
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+scroll_active = false
+
+[connection signal="text_submitted" from="ChatPanelContainer/ChatHBox/ChatVBox/LineEdit" to="." method="_on_line_edit_text_submitted"]

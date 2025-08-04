@@ -47,6 +47,9 @@ var splash_screen : ModularCutscene : get = _get_splash_screen
 @export var requested_next_scene : Control = null
 
 
+@export var alert_system_ui_path:String = "res://lib/gd_app_ui/scene/ui/alert_system_ui.tscn"
+var alert_system_ui:AlertSystemUI = null
+
 func _get_splash_screen() -> ModularCutscene: 
 	var screen: ModularCutscene
 	if splash_screen and is_instance_valid(splash_screen): screen = splash_screen
@@ -99,6 +102,9 @@ func app_ui_starting() -> void:
 	
 	if splashing: 
 		await splashed
+	
+	alert_system_ui = load(alert_system_ui_path).instantiate()
+	await Make.child(alert_system_ui, self)
 	
 	app.ui_subduing = false
 	app.ui_mercy.emit()

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bvhaeqfmqir"]
+
+[ext_resource type="Script" uid="uid://bv0acposks7q2" path="res://lib/gd_app_ui/scene/ui/alert_system_ui.gd" id="1_rbj1s"]
+
+[node name="AlertSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rbj1s")
+
+[node name="AlertsScrollBox" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+follow_focus = true
+
+[node name="AlertsVBox" type="VBoxContainer" parent="AlertsScrollBox"]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = -110
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../AlertsScrollBox/AlertsVBox")

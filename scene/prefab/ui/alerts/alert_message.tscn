@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://gdpjipkaapox"]
+
+[ext_resource type="Script" uid="uid://cv0iao8vgjlt3" path="res://lib/gd_app_ui/scene/prefab/ui/alerts/alert_message.gd" id="1_v0dry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7rhu"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.317647, 0.317647, 0.317647, 1)
+
+[node name="AlertMessage" type="Control"]
+custom_minimum_size = Vector2(384, 120)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_v0dry")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r7rhu")
+
+[node name="AlertVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Spacing" type="Control" parent="AlertVBox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AlertTypeText" type="RichTextLabel" parent="AlertVBox"]
+modulate = Color(0.345098, 0.32549, 1, 1)
+clip_contents = false
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Alert[/center]"
+scroll_active = false
+
+[node name="Spacing2" type="Control" parent="AlertVBox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AlertTitleText" type="RichTextLabel" parent="AlertVBox"]
+modulate = Color(0.556863, 0.764706, 1, 1)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]Alert Name[/center]"
+scroll_active = false
+
+[node name="AlertMessageText" type="RichTextLabel" parent="AlertVBox"]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]This is an alert.[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="BeginFadeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BeginFadeTimer" to="." method="_on_begin_fade_timer_timeout"]
