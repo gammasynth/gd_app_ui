@@ -49,10 +49,6 @@ layout_mode = 2
 placeholder_text = "Type here to chat..."
 max_length = 37
 
-[node name="ChatSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://src/scene/prefab/ui/chat_message_h_box.tscn")
-spawn_path = NodePath("../ChatPanelContainer/ChatHBox/ChatVBox/ScrollContainer/ChatMessagesVBox")
-
 [node name="PromptChatMessage" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0.329412)
 layout_mode = 1

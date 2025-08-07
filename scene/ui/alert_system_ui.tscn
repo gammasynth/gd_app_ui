@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bv0acposks7q2" path="res://lib/gd_app_ui/scene/ui/alert_system_ui.gd" id="1_rbj1s"]
 
-[node name="AlertSystem" type="Control"]
+[node name="alert_system_ui" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

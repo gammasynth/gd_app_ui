@@ -50,6 +50,9 @@ var splash_screen : ModularCutscene : get = _get_splash_screen
 @export var alert_system_ui_path:String = "res://lib/gd_app_ui/scene/ui/alert_system_ui.tscn"
 var alert_system_ui:AlertSystemUI = null
 
+@export var chat_system_ui_path:String = "res://lib/gd_app_ui/scene/ui/chat_system_ui.tscn"
+var chat_system_ui:ChatSystemUI = null
+
 func _get_splash_screen() -> ModularCutscene: 
 	var screen: ModularCutscene
 	if splash_screen and is_instance_valid(splash_screen): screen = splash_screen
@@ -86,6 +89,7 @@ func app_ui_starting() -> void:
 	
 	setup_window()
 	
+	
 	splash_screen.play_on_ready = false
 	splash_screen.finish_on_audio = true
 	
@@ -105,6 +109,9 @@ func app_ui_starting() -> void:
 	
 	alert_system_ui = load(alert_system_ui_path).instantiate()
 	await Make.child(alert_system_ui, self)
+	
+	chat_system_ui = load(chat_system_ui_path).instantiate()
+	await Make.child(chat_system_ui, self)
 	
 	app.ui_subduing = false
 	app.ui_mercy.emit()
