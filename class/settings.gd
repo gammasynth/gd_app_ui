@@ -25,6 +25,7 @@ static var all_settings: Dictionary = {}
 
 var settings_file_path: String = ""
 var setting_properties : Dictionary = {}
+var saveable:bool = false
 
 
 func _init(_name:String="settings", _key:Variant=_name) -> void:
@@ -66,27 +67,26 @@ func convert_to_dictionary() -> Dictionary:
 	return settings_dictionary
 
 
-static func initialize_settings(_settings_name:String, _settings_file_path:String="user://settings/") -> Settings:
-	
-	if all_settings.has(_settings_name):
-		print(str("Settings.initialize_settings | settings name already exists, trying to overwrite? @" + _settings_name))
-		
-		var old_setting: Settings = all_settings.get(_settings_name)
-		if not old_setting:
-			print(str("Settings.initialize_settings | allowing overwrite at empty entry? @" + _settings_name))
-		else:
-			print(str("Settings.initialize_settings | returning existing Settings entry, overwrite refused. @" + _settings_name + ", path@ " + _settings_file_path))
-			return old_setting
-	
-	var dir: DirAccess = DirAccess.open("user://")
-	dir.make_dir_recursive(_settings_file_path)
-	dir.make_dir_recursive(DEFAULT_SETTINGS_FOLDER)
-	
-	var file_path: String = str(_settings_file_path + _settings_name.to_snake_case() + ".json")
-	
+static func initialize_settings(_settings_name:String, _saveable:bool=false, _settings_file_path:String="user://settings/") -> Settings:
 	var settings: Settings = Settings.new(_settings_name)
-	settings.settings_file_path = file_path
-	
+	settings.saveable = _saveable
+	if _saveable:
+		var dir: DirAccess = DirAccess.open("user://")
+		dir.make_dir_recursive(_settings_file_path)
+		dir.make_dir_recursive(DEFAULT_SETTINGS_FOLDER)
+		
+		var file_path: String = str(_settings_file_path + _settings_name.to_snake_case() + ".json")
+		settings.settings_file_path = file_path
+		
+		if all_settings.has(_settings_name):
+			print(str("Settings.initialize_settings | settings name already exists, trying to overwrite? @" + _settings_name))
+			
+			var old_setting: Settings = all_settings.get(_settings_name)
+			if not old_setting:
+				print(str("Settings.initialize_settings | allowing overwrite at empty entry? @" + _settings_name))
+			else:
+				print(str("Settings.initialize_settings | returning existing Settings entry, overwrite refused. @" + _settings_name + ", path@ " + _settings_file_path))
+				return old_setting
 	return settings
 
 
@@ -129,11 +129,13 @@ func finish_prepare_settings() -> void:
 
 
 func save_settings() -> Error:
+	if not saveable: return OK
 	var settings_dict: Dictionary = convert_to_dictionary()
 	return File.save_dict_file(settings_dict, settings_file_path)
 
 
 func load_settings() -> bool:
+	if not saveable: return true
 	if not FileAccess.file_exists(settings_file_path): return false
 	
 	# load old existing settings file, if it has the same property and name hash.
