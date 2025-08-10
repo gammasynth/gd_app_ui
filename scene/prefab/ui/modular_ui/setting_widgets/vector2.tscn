@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bkf4p6s6c7f3s" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/vector_2.gd" id="1_8dsi7"]
 
 [node name="vector2_setting_widget" type="MarginContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 194.0
+offset_bottom = 24.0
 script = ExtResource("1_8dsi7")
 
 [node name="hbox" type="HBoxContainer" parent="."]

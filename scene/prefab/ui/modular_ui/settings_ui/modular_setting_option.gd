@@ -3,7 +3,7 @@ extends MarginContainer
 class_name ModularSettingOption
 
 
-@onready var hbox: HBoxContainer = $hbox
+@onready var hbox = $hbox
 @onready var center_box: CenterContainer = $hbox/center_box
 @onready var labels_hbox: HBoxContainer = $hbox/center_box/labels_hbox
 @onready var setting_label: RichTextLabel = $hbox/center_box/labels_hbox/setting_label
@@ -34,7 +34,7 @@ static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOptio
 	if App.app.registry_system: use_registry = true
 	
 	if use_registry: new_setting = Registry.pull("modular_ui", "modular_setting_option.tscn").instantiate()
-	else: new_setting = load("res://core/scene/prefab/ui/modular_ui/modular_setting_option.tscn").instantiate()
+	else: new_setting = load("res://lib/gd_app_ui/scene/prefab/ui/modular_ui/settings_ui/modular_setting_option.tscn").instantiate()
 	
 	new_setting.setting_name = setting_dictionary.get("SETTING_NAME")
 	new_setting.setting_types = setting_dictionary.get("SETTING_TYPES")
@@ -43,6 +43,13 @@ static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOptio
 	new_setting.widget_params = setting_dictionary.get("WIDGET_PARAMS")
 	
 	return new_setting
+
+func setup_from_settings(setting_dictionary:Dictionary):
+	setting_name = setting_dictionary.get("SETTING_NAME")
+	setting_types = setting_dictionary.get("SETTING_TYPES")
+	setting_change_function = setting_dictionary.get("SETTING_CHANGE_FUNCTION")
+	setting_values = setting_dictionary.get("SETTING_VALUES")
+	widget_params = setting_dictionary.get("WIDGET_PARAMS")
 
 
 func _ready() -> void:

@@ -25,6 +25,16 @@ func _widget_setup() -> Error:
 
 func setup_spin_box_widget(this_spin_box:SpinBox):
 	
+	if modular_setting.setting_values.size() > 0:
+		var v = modular_setting.setting_values.get(0)
+		if v is Vector2 or v is Vector2i or v is Vector3 or v is Vector3i:
+			if widget_index == 0:
+				this_spin_box.value = v.x
+			if widget_index == 1:
+				this_spin_box.value = v.y
+			if widget_index == 2:
+				if v is Vector3 or v is Vector3i: this_spin_box.value = v.z
+	
 	if modular_setting.setting_values.size() - 1 <= widget_index: 
 		var num = modular_setting.setting_values[widget_index]
 		if num is float or num is int:

@@ -5,11 +5,16 @@
 [node name="color_setting_widget" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_3w4iw")
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 color = Color(1, 1, 1, 1)
 
-[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="color_changed" from="CenterContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
