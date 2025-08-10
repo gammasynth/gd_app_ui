@@ -1,14 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://csuu6if67icdf"]
+[gd_scene load_steps=2 format=3 uid="uid://csuu6if67icdf"]
 
-[ext_resource type="FontFile" uid="uid://cnji0hctq4gul" path="res://lib/gd_app_ui/assets/font/OfficeCodePro-Light.otf" id="1_etic5"]
 [ext_resource type="Script" uid="uid://dpjuuqrm3ooc" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/settings_ui/modular_setting_option.gd" id="1_ywfto"]
 
 [node name="modular_setting_option" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
 mouse_filter = 2
-theme_override_constants/margin_left = 2
+theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
+theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 script = ExtResource("1_ywfto")
 
@@ -19,6 +18,7 @@ theme_override_constants/separation = 1
 
 [node name="center_box" type="CenterContainer" parent="hbox"]
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="labels_hbox" type="HBoxContainer" parent="hbox/center_box"]
@@ -27,8 +27,8 @@ mouse_filter = 2
 
 [node name="setting_label" type="RichTextLabel" parent="hbox/center_box/labels_hbox"]
 layout_mode = 2
+size_flags_horizontal = 0
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("1_etic5")
 bbcode_enabled = true
 text = "setting"
 fit_content = true
@@ -38,9 +38,8 @@ autowrap_mode = 0
 [node name="colon_label" type="RichTextLabel" parent="hbox/center_box/labels_hbox"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("1_etic5")
 bbcode_enabled = true
-text = ":"
+text = ": "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

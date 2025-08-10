@@ -1,4 +1,4 @@
-extends DatabaseMarginContainer
+extends MarginContainer
 
 class_name ModularSettingOption
 
@@ -59,12 +59,12 @@ func _ready() -> void:
 		
 		var widget_packed_scene_name: String = str(widget_name + ".tscn")
 		
-		if not widget_registry.db.has(widget_packed_scene_name):
-			warn(str("registry does not have SettingWidget scene at key: " + widget_name))
-			continue
+		#if not widget_registry.db.has(widget_packed_scene_name):
+			#warn(str("registry does not have SettingWidget scene at key: " + widget_name))
+			#continue
 		
 		var widget_packed_scene: PackedScene = widget_registry.grab(widget_packed_scene_name)
-		if not widget_packed_scene: warn("widget scene instance is null!"); continue
+		#if not widget_packed_scene: warn("widget scene instance is null!"); continue
 		
 		var widget: SettingWidget = widget_packed_scene.instantiate()
 		
@@ -74,6 +74,6 @@ func _ready() -> void:
 		var params: Dictionary = {}; if widget_params.size() > 0 and widget_params.size() - 1 <= widget_index: params = widget_params[widget_index]
 		
 		widget.modular_setting = self
-		var err: Error = await widget.widget_setup(widget_index, setting_change_function, value, params)
-		warn("widget setup", err)
+		var _err: Error = await widget.widget_setup(widget_index, setting_change_function, value, params)
+		#warn("widget setup", err)
 		widget_index += 1

@@ -1,5 +1,5 @@
-extends Database
-## Settings is a Database Class that can store setting configurations for systems quickly, and synch them as user files.
+extends RefCounted
+## Settings is a Class that can store setting configurations for systems quickly, and also synch them as user files.
 ## 
 ## Settings is intended to be used in tandem with ModularSettingsMenu and ModularSettingOption, which are Control UI elements. [br]
 ## All Settings objects created with Settings.initialize_settings are tracked within the static all_settings Dictionary.
@@ -27,9 +27,9 @@ var settings_file_path: String = ""
 var setting_properties : Dictionary = {}
 var saveable:bool = false
 
+var name:String = "Settings"
 
-func _init(_name:String="settings", _key:Variant=_name) -> void:
-	super(_name, _key)
+func _init(_name:String="settings") -> void: return
 
 
 #func get_settings_values() -> Dictionary:
@@ -93,7 +93,7 @@ static func initialize_settings(_settings_name:String, _saveable:bool=false, _se
 
 func prepare_setting(setting_name:String, setting_types:Array[String], setting_change_function:Callable, setting_values:Array[Variant], widget_params:Array[Dictionary]=[]) -> void:
 	if setting_properties.has(setting_name): 
-		warn(str("cant prepare setting! already has setting name entry: " + setting_name))
+		print(str("cant prepare setting! already has setting name entry: " + setting_name))
 		return
 	
 	var new_setting: Dictionary = {
@@ -104,7 +104,7 @@ func prepare_setting(setting_name:String, setting_types:Array[String], setting_c
 		"WIDGET_PARAMS" : widget_params
 	}
 	
-	setting_properties.get_or_add(setting_name, new_setting)
+	setting_properties.set(setting_name, new_setting)
 	return
 
 
@@ -119,7 +119,7 @@ func finish_prepare_settings() -> void:
 	if not loaded:
 		# Regardless if we have an existing file above or not, we will need to start recording this Settings as a file, now, and whenever changed.
 		var err: Error = save_settings()
-		warn("couldnt save file!", err)
+		print("couldnt save file!", err)
 	
 	all_settings.erase(name)
 	all_settings.get_or_add(name, self)
@@ -164,7 +164,7 @@ func load_settings() -> bool:
 		var setting_callable: Callable = this_setting["SETTING_CHANGE_FUNCTION"]
 		for i in vals.size():
 			var val: Variant = vals[i]
-			chat(str("LOADED SETTING: [type : value]"))
+			print(str("LOADED SETTING: [type : value]"))
 			
 			#print(type_string(typeof(val)))
 			#print(val)
@@ -190,6 +190,10 @@ func load_settings() -> bool:
 
 
 func instance_ui(ui_parent:Node) -> ModularSettingsMenu:
+	var this_ui: ModularSettingsMenu = await ModularSettingsMenu.build_settings_ui(self, ui_parent)
+	return this_ui
+
+func _instance_ui(ui_parent:Node) -> ModularSettingsMenu:
 	var this_ui: ModularSettingsMenu = await ModularSettingsMenu.build_settings_ui(self, ui_parent)
 	return this_ui
 
@@ -225,7 +229,7 @@ func instance_ui_window(ui_window_parent:Node, at_position:Vector2i=Vector2i(-1,
 	#var settings: Settings = all_settings.get(settings_name)
 
 
-func get_settings_hash(hash_name:String=name, hash_props:Array=setting_properties.keys()) -> int:
+func get_settings_hash(hash_name:String="settings", hash_props:Array=setting_properties.keys()) -> int:
 	var prehash: String = hash_name
 	
 	var props: Array = hash_props

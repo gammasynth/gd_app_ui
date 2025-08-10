@@ -192,3 +192,44 @@ static func refresh_window(new_size:Vector2i=Vector2i(0, 0)):
 	if not ui.get_window(): return
 	resize(new_size)
 	ui.get_window().child_controls_changed()
+
+static func refresh_controls(control:Control=null):
+	#var main_size:Vector2 = Vector2.ZERO
+	if not control:
+		if ui:
+			control = ui
+			#main_size = control.size
+	
+	if not control or not is_instance_valid(control): return
+	
+	for child in control.get_children():
+		if child is Control: refresh_controls(child)
+	
+	#if control is not Container: 
+		#if control.get_parent() is Container: control.size = Vector2.ZERO
+	
+	if control is Container:
+		control.queue_sort()
+	#hide_control(control)
+	#reset_cms(control)
+	#await control.get_tree().process_frame
+	#await control.get_tree().process_frame
+	#control.reset_size()
+	#show_control(control)
+
+
+static func reset_cms(control:Control):
+	for child in control.get_children():
+		if child is Control: reset_cms(child)
+	control.item_rect_changed.emit()
+	#control.set_custom_minimum_size.call_deferred(control.custom_minimum_size)
+
+static func hide_control(control:Control):
+	for child in control.get_children():
+		if child is Control: hide_control(child)
+	control.hide()
+
+static func show_control(control:Control):
+	for child in control.get_children():
+		if child is Control: show_control(child)
+	control.show.call_deferred()

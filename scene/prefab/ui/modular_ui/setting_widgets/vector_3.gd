@@ -19,7 +19,7 @@ func _on_spin_box_x_value_changed(value: float) -> void:
 	
 	setting_change_function.call(vec)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
 
 
 func _on_spin_box_y_value_changed(value: float) -> void:
@@ -29,7 +29,7 @@ func _on_spin_box_y_value_changed(value: float) -> void:
 	
 	setting_change_function.call(vec)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
 
 
 func _on_spin_box_z_value_changed(value: float) -> void:
@@ -39,4 +39,4 @@ func _on_spin_box_z_value_changed(value: float) -> void:
 	
 	setting_change_function.call(vec)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()

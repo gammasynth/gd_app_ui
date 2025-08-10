@@ -78,4 +78,4 @@ func update_setting_value(new_value:Variant) -> void:
 	modular_setting.setting_values[widget_index] = new_value
 	setting_change_function.call(new_value)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()

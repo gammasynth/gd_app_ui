@@ -4,7 +4,9 @@ extends SettingWidget
 @onready var spin_box_y: SpinBox = $hbox/SpinBoxY
 
 
+
 func _widget_setup() -> Error:
+	
 	setup_spin_box_widget(spin_box_x)
 	setup_spin_box_widget(spin_box_y)
 	return OK
@@ -18,7 +20,7 @@ func _on_spin_box_x_value_changed(value: float) -> void:
 	
 	setting_change_function.call(vec)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
 
 
 func _on_spin_box_y_value_changed(value: float) -> void:
@@ -28,4 +30,4 @@ func _on_spin_box_y_value_changed(value: float) -> void:
 	
 	setting_change_function.call(vec)
 	
-	modular_setting.modular_settings.settings.save_settings()
+	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
