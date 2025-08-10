@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 class_name AlertMessage
 
@@ -11,9 +11,10 @@ class_name AlertMessage
 #@onready var app:App = game.get_parent()
 
 
-@onready var alert_type_text: RichTextLabel = $AlertVBox/AlertTypeText
-@onready var alert_title_text: RichTextLabel = $AlertVBox/AlertTitleText
-@onready var alert_message_text: RichTextLabel = $AlertVBox/AlertMessageText
+@onready var alert_type_text: RichTextLabel = $MarginContainer/AlertVBox/AlertTypeText
+@onready var alert_title_text: RichTextLabel = $MarginContainer/AlertVBox/AlertTitleText
+@onready var alert_message_text: RichTextLabel = $MarginContainer/AlertVBox/AlertMessageText
+
 
 @onready var begin_fade_timer: Timer = $BeginFadeTimer
 
