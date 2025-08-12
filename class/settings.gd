@@ -26,6 +26,7 @@ static var all_settings: Dictionary = {}
 var settings_file_path: String = ""
 var setting_properties : Dictionary = {}
 var saveable:bool = false
+var emit_name_with_value_change:bool = false
 
 var name:String = "Settings"
 
@@ -91,7 +92,7 @@ static func initialize_settings(_settings_name:String, _saveable:bool=false, _se
 
 
 
-func prepare_setting(setting_name:String, setting_types:Array[String], setting_change_function:Callable, setting_values:Array[Variant], widget_params:Array[Dictionary]=[]) -> void:
+func prepare_setting(setting_name:String, setting_types:Array[String], setting_change_function:Callable, setting_values:Array[Variant], widget_params:Array[Dictionary]=[],emit_name_with_value_change:bool=false) -> void:
 	if setting_properties.has(setting_name): 
 		print(str("cant prepare setting! already has setting name entry: " + setting_name))
 		return
@@ -101,7 +102,8 @@ func prepare_setting(setting_name:String, setting_types:Array[String], setting_c
 		"SETTING_TYPES" : setting_types,
 		"SETTING_CHANGE_FUNCTION" : setting_change_function,
 		"SETTING_VALUES" : setting_values,
-		"WIDGET_PARAMS" : widget_params
+		"WIDGET_PARAMS" : widget_params,
+		"emit_name_with_value_change" : emit_name_with_value_change
 	}
 	
 	setting_properties.set(setting_name, new_setting)
@@ -180,7 +182,11 @@ func load_settings() -> bool:
 							var new_value: Color = Color(v.get("R"), v.get("G"), v.get("B"), 1.0)
 							val = new_value
 			
-			setting_callable.call(val)
+			var setting_name:String = this_setting.get("SETTING_NAME")
+			if emit_name_with_value_change:
+				setting_callable.call(val, setting_name)
+			else:
+				setting_callable.call(val)
 			new_vals.append(val)
 		
 		vals = new_vals

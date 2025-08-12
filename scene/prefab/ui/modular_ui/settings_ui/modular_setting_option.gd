@@ -14,11 +14,13 @@ class_name ModularSettingOption
 var modular_settings: ModularSettingsMenu = null
 
 var setting_name: String = ""
-var setting_types: Array[String] = []
+var setting_types: Array = []
 var setting_change_function: Callable
-var setting_values: Array[Variant] = []
-var widget_params: Array[Dictionary] =[]
+var setting_values: Array = []
+var widget_params: Array =[]
+var emit_name_with_value_change:bool = false
 
+var is_new:bool = true
 
 static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOption:
 	#var new_setting: Dictionary = {
@@ -41,7 +43,7 @@ static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOptio
 	new_setting.setting_change_function = setting_dictionary.get("SETTING_CHANGE_FUNCTION")
 	new_setting.setting_values = setting_dictionary.get("SETTING_VALUES")
 	new_setting.widget_params = setting_dictionary.get("WIDGET_PARAMS")
-	
+	new_setting.emit_name_with_value_change = setting_dictionary.get("emit_name_with_value_change")
 	return new_setting
 
 func setup_from_settings(setting_dictionary:Dictionary):
@@ -50,10 +52,15 @@ func setup_from_settings(setting_dictionary:Dictionary):
 	setting_change_function = setting_dictionary.get("SETTING_CHANGE_FUNCTION")
 	setting_values = setting_dictionary.get("SETTING_VALUES")
 	widget_params = setting_dictionary.get("WIDGET_PARAMS")
+	emit_name_with_value_change = setting_dictionary.get("emit_name_with_value_change")
 
 
 func _ready() -> void:
 	
+	if not is_new:
+		return
+	
+	is_new = false
 	#if setting_types.is_empty(): queue_free(); return
 	
 	setting_label.text = setting_name

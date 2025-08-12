@@ -85,7 +85,16 @@ func setup_button(this_button:Button):
 
 
 func update_setting_value(new_value:Variant) -> void:
+	if not is_node_ready(): await ready
+	if setting_change_function.is_null(): 
+		printerr("NULL SETTING CALLABLE!")
+		return
+	
 	modular_setting.setting_values[widget_index] = new_value
-	setting_change_function.call(new_value)
+	
+	if modular_setting.emit_name_with_value_change:
+		setting_change_function.call(new_value, modular_setting.setting_name)
+	else:
+		setting_change_function.call(new_value)
 	
 	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
