@@ -87,6 +87,8 @@ func _ready() -> void:
 		var value: Variant = null; if widget_params.size() > 0 and setting_values.size() - 1 <= widget_index: value = setting_values[widget_index]
 		var params: Dictionary = {}; if widget_params.size() > 0 and widget_params.size() - 1 <= widget_index: params = widget_params[widget_index]
 		
+		if value == null and setting_values.size() > 0: value = setting_values.get(0)
+		
 		widget.modular_setting = self
 		var _err: Error = await widget.widget_setup(widget_index, setting_change_function, value, params)
 		#warn("widget setup", err)

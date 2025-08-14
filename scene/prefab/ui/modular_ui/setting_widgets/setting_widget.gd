@@ -64,6 +64,8 @@ func setup_button(this_button:Button):
 	var setting_value: Variant = null
 	if modular_setting.setting_values.size() - 1 <= widget_index: setting_value = modular_setting.setting_values[widget_index]
 	
+	if modular_setting.setting_values.size() > 0 and modular_setting.setting_values[0] is String: this_button.text = modular_setting.setting_values[0]
+	
 	if setting_value is bool:
 		this_button.button_pressed = setting_value
 	

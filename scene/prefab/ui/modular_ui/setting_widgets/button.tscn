@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://duy4us22xay7j"]
+
+[ext_resource type="Script" uid="uid://0wkk1mtncof0" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/button.gd" id="1_v5ynf"]
+
+[node name="button_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_v5ynf")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

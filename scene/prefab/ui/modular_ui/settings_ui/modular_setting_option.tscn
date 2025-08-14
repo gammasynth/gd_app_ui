@@ -4,6 +4,8 @@
 
 [node name="modular_setting_option" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
@@ -18,7 +20,8 @@ theme_override_constants/separation = 1
 
 [node name="center_box" type="CenterContainer" parent="hbox"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="labels_hbox" type="HBoxContainer" parent="hbox/center_box"]
@@ -27,7 +30,8 @@ mouse_filter = 2
 
 [node name="setting_label" type="RichTextLabel" parent="hbox/center_box/labels_hbox"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 bbcode_enabled = true
 text = "setting"
@@ -37,6 +41,8 @@ autowrap_mode = 0
 
 [node name="colon_label" type="RichTextLabel" parent="hbox/center_box/labels_hbox"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 bbcode_enabled = true
 text = ": "

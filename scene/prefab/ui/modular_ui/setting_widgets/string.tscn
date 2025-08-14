@@ -5,6 +5,7 @@
 [node name="string_setting_widget" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
 script = ExtResource("1_nwj4n")
 
 [node name="LineEdit" type="LineEdit" parent="."]

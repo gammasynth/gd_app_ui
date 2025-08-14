@@ -1,12 +1,15 @@
 extends SettingWidget
 
+@onready var menu_button: MenuButton = $MenuButton
+var popup:PopupMenu = null
 
-@onready var menu_bar: MenuBar = $MenuBar
-@onready var select: PopupMenu = $MenuBar/Select
+var items_dict:Dictionary = {}
 
 func _widget_setup() -> Error:
+	popup = menu_button.get_popup()
+	popup.index_pressed.connect(_on_index_pressed)
 	
-	if widget_params.has("WINDOW_TITLE"): select.title = widget_params.get("WINDOW_TITLE")
+	if widget_params.has("WINDOW_TITLE"): popup.title = widget_params.get("WINDOW_TITLE")
 	
 	var item_index:int = 0
 	
@@ -15,7 +18,8 @@ func _widget_setup() -> Error:
 		var val: Variant = widget_params.get(str("ITEM_" + str(item_index)))
 		
 		if val is String:
-			select.add_item(val)
+			items_dict.set(item_index, val)
+			popup.add_item(val)
 		elif val is Dictionary:
 			var item_def: Dictionary = val as Dictionary
 			
@@ -25,14 +29,16 @@ func _widget_setup() -> Error:
 				var accel : Key = 0
 				if item_def.has("ACCEL") and item_def.get("ACCEL") is Key: accel = item_def.get("ACCEL")
 				
-				select.add_item(item_name, -1, accel)
+				items_dict.set(item_index, item_name)
+				popup.add_item(item_name, -1, accel)
 		
 		item_index += 1
-	
+	menu_button.text = items_dict.get(default_value)
 	return OK
 
 
 
 
-func _on_select_index_pressed(index: int) -> void:
+func _on_index_pressed(index: int) -> void:
 	update_setting_value(index)
+	menu_button.text = items_dict.get(index)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://i7ohwjg2t0re"]
+
+[ext_resource type="Script" uid="uid://8yyjm287wdqs" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/codeblock.gd" id="1_vgku7"]
+
+[node name="codeblock_setting_widget" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vgku7")
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+custom_minimum_size = Vector2(350, 250)
+layout_mode = 2
+highlight_all_occurrences = true
+highlight_current_line = true
+draw_tabs = true
+draw_spaces = true
+line_folding = true
+gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+
+[connection signal="text_set" from="CodeEdit" to="." method="_on_code_edit_text_set"]
