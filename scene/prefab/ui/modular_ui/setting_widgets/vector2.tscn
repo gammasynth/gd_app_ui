@@ -5,6 +5,8 @@
 [node name="vector2_setting_widget" type="MarginContainer"]
 offset_right = 194.0
 offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
 script = ExtResource("1_8dsi7")
 
 [node name="hbox" type="HBoxContainer" parent="."]

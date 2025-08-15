@@ -5,6 +5,8 @@
 [node name="float_setting_widget" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
 script = ExtResource("1_fffx1")
 
 [node name="SpinBox" type="SpinBox" parent="."]

@@ -21,25 +21,25 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	
+
 	if (travel == vec2(0.0)) {
 		extra *= travel;
 	}
-	
+
 	extra += travel * TIME;
-	
-	
+
+
 	float n = cnoise(
 		vec4(
 			(UV * (scale * mix(sin(TIME * time_mod) * 0.00001, 1.0, 0.15)))+(offset + extra)
 			 * (scale * sin(TIME * time_mod * 0.0025) * time_offset) * 1.55,
-			 1.0, 
+			 1.0,
 			TIME
 			))*0.5+0.5;
    // COLOR.rgb = vec3(n);
-	
+
 	vec4 color = albedo_bright;
-	
+
 	if (posterize) {
 		if (n < darkness) {
 			color = albedo_dark;
@@ -48,7 +48,7 @@ void fragment() {
 	else {
 		color = mix(color, albedo_dark, n * darkness);
 	}
-	
+
 	COLOR = color;
 }
 

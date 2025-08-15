@@ -1,7 +1,7 @@
 extends PopupMenu
 class_name ContextMenu
 
-enum MENU_TYPES {TAP, RIGHT_CLICK}
+enum MENU_TYPES {MANUAL, TAP, RIGHT_CLICK}
 var menu_type:MENU_TYPES = MENU_TYPES.TAP
 
 #static var instance: ContextMenu
@@ -26,15 +26,18 @@ func create(_show: bool = true) -> void:
 	clear(true)
 	assemble_actions()
 	
-	if _show: show()
+	if _show: popup()
 
 
 func assemble_actions() -> void:
 	for action in actions:
-		if actions[action] is Callable:
+		var a = actions[action]
+		if a is Callable:
 			add_item(action)
+		elif a is Dictionary:
+			assemble_submenu_actions(action, a)
 		else:
-			assemble_submenu_actions(action, actions[action])
+			printerr(str("what is " + str(a)))
 
 
 func assemble_submenu_actions(action: String, _sub_actions: Dictionary, _submenu: PopupMenu = null) -> void:
@@ -65,12 +68,13 @@ func on_id_clicked(id) -> void:
 		action.call()
 
 
-static func setup(node, _actions, _menu_type:MENU_TYPES = MENU_TYPES.TAP, _forced_position:Variant = null) -> void:
+static func setup(node, _actions, _menu_type:MENU_TYPES = MENU_TYPES.MANUAL, _forced_position:Variant = null) -> ContextMenu:
 	var instance: ContextMenu = ContextMenu.new()
 	instance.actions = _actions
 	instance.menu_type = _menu_type
 	instance.forced_position = _forced_position
-	node.gui_input.connect(instance.receive_input)
+	if _menu_type != MENU_TYPES.MANUAL: node.gui_input.connect(instance.receive_input)
+	return instance
 
 func receive_input(event: InputEvent):
 	if event is InputEventMouseButton:
