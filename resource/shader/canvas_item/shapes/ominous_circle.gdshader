@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resources/shader/lib/shapes/circle_color.gdshaderinc"
-#include "res://lib/gd_app_ui/resources/shader/lib/gamma_noise/ominous_cellular_3d.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/lib/shapes/circle_color.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/lib/gamma_noise/ominous_cellular_3d.gdshaderinc"
 
 uniform float noise_mix: hint_range(0.0, 1.0, 0.01) = 0.5;
 

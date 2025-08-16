@@ -40,7 +40,7 @@ var cutscene : ModularCutscene :
 @export var splash_audio_path: String = ""
 @export var splash_audio_bus: StringName = "Master"
 
-var splash_screen : ModularCutscene : get = _get_splash_screen
+var splash_screen : ModularCutscene
 
 
 @export var current_scene : Control = null
@@ -53,19 +53,19 @@ var alert_system_ui:AlertSystemUI = null
 @export var chat_system_ui_path:String = "res://lib/gd_app_ui/scene/ui/chat_system_ui.tscn"
 var chat_system_ui:ChatSystemUI = null
 
-func _get_splash_screen() -> ModularCutscene: 
-	var screen: ModularCutscene
-	if splash_screen and is_instance_valid(splash_screen): screen = splash_screen
-	
-	#if app.registry_system and not screen: 
-		#var scene = Registry.pull("generic_modular_ui", "modular_cutscreen.tscn")
-		#if scene: screen = scene.instantiate()
-	
-	if not screen: screen = load("res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_cutscene.tscn").instantiate()
-	
-	splash_screen = screen
-	if cutscene != splash_screen: cutscene = splash_screen
-	return splash_screen
+#func _get_splash_screen() -> ModularCutscene: 
+	#var screen: ModularCutscene
+	#if splash_screen and is_instance_valid(splash_screen): screen = splash_screen
+	#
+	##if app.registry_system and not screen: 
+		##var scene = Registry.pull("generic_modular_ui", "modular_cutscreen.tscn")
+		##if scene: screen = scene.instantiate()
+	#
+	#if not screen: screen = load("res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_cutscene.tscn").instantiate()
+	#
+	#splash_screen = screen
+	#if cutscene != splash_screen: cutscene = splash_screen
+	#return splash_screen
 
 var splashing: bool = false
 
@@ -90,19 +90,19 @@ func app_ui_starting() -> void:
 	setup_window()
 	
 	
-	splash_screen.play_on_ready = false
-	splash_screen.finish_on_audio = true
+	#splash_screen.play_on_ready = false
+	#splash_screen.finish_on_audio = true
 	
-	await Make.child(splash_screen, self)
-	
-	if not splash_screen.video.stream:
-		splash_screen.stream_path = splash_video_path
-	
-	if not splash_screen.audio.stream:
-		splash_screen.audio_stream_path = splash_audio_path
-	
-	splashing = true
-	splash_screen.start()
+	#await Make.child(splash_screen, self)
+	#
+	#if not splash_screen.video.stream:
+		#splash_screen.stream_path = splash_video_path
+	#
+	#if not splash_screen.audio.stream:
+		#splash_screen.audio_stream_path = splash_audio_path
+	#
+	#splashing = true
+	#splash_screen.start()
 	
 	if splashing: 
 		await splashed

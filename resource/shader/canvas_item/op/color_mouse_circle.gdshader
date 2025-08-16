@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resources/shader/lib/shapes/circle_color.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/lib/shapes/circle_color.gdshaderinc"
 
 uniform vec2 mouse_position;
 

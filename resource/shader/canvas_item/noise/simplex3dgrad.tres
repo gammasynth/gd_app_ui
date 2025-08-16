@@ -1,7 +1,6 @@
-[gd_resource type="Shader" format=2]
+[gd_resource type="Shader" format=3 uid="uid://dpshoj4ivbbxo"]
 
 [resource]
-
 code = "shader_type canvas_item;
 
 uniform vec2 offset;
@@ -122,4 +121,3 @@ void fragment() {
     float n = snoise(vec3((UV + offset) * scale, TIME), grad) * 0.5 + 0.5;
     COLOR.rgb = vec3(grad.y);
 }"
-

@@ -2,7 +2,7 @@ extends RefCounted
 ## Settings is a Class that can store setting configurations for systems quickly, and also synch them as user files.
 ## 
 ## Settings is intended to be used in tandem with ModularSettingsMenu and ModularSettingOption, which are Control UI elements. [br]
-## All Settings objects created with Settings.initialize_settings are tracked within the static all_settings Dictionary.
+## All Settings objects created with Settings.initialize_settings are tracked within the static all_settings Dictionary, if saveable is true.
 ## [br] [br] [br]
 ## To create a new Settings: [br] [br]
 ## 

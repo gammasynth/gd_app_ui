@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resources/shader/lib/op/color_replace.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/lib/op/color_replace.gdshaderinc"
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
 

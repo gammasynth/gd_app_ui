@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resources/shader/lib/noise/classic_perlin4d.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/lib/noise/classic_perlin4d.gdshaderinc"
 
 uniform vec4 albedo_bright: source_color = vec4(1.0);
 uniform vec4 albedo_dark: source_color = vec4(0.0, 0.0, 0.0, 1.0);
