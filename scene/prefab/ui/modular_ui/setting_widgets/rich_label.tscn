@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8wd1fdjof31f"]
+
+[ext_resource type="Script" uid="uid://dnt1gcfavasfa" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/setting_widgets/rich_label.gd" id="1_blq2a"]
+
+[node name="rich_label_setting_widget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_blq2a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0

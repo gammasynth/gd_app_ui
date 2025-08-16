@@ -36,6 +36,14 @@ func assemble_actions() -> void:
 			add_item(action)
 		elif a is Dictionary:
 			assemble_submenu_actions(action, a)
+		elif a is String:
+			if a == "TITLE":
+				add_item(action)
+				set_item_disabled(item_count - 1,true)
+			elif a == "SEPARATOR":
+				add_separator(action)
+			else:
+				printerr(str("what is " + str(a)))
 		else:
 			printerr(str("what is " + str(a)))
 
@@ -51,6 +59,7 @@ func assemble_submenu_actions(action: String, _sub_actions: Dictionary, _submenu
 		var callable = _sub_actions[submenu.get_item_text(id)]
 		if callable is Callable: callable.call()
 	)
+	
 	add_submenu_node_item(action, submenu)
 		
 	for subaction in _sub_actions:
