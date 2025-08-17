@@ -16,5 +16,6 @@ func _widget_setup() -> Error:
 
 
 
-func _on_code_edit_text_set() -> void:
+
+func _on_code_edit_text_changed() -> void:
 	update_setting_value(code_edit.text)
