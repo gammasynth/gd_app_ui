@@ -10,4 +10,4 @@ script = ExtResource("1_3wrcg")
 [node name="CheckBox" type="CheckBox" parent="."]
 layout_mode = 2
 
-[connection signal="button_down" from="CheckBox" to="." method="_on_check_box_button_down"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

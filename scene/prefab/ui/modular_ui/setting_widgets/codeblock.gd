@@ -19,3 +19,6 @@ func _widget_setup() -> Error:
 
 func _on_code_edit_text_changed() -> void:
 	update_setting_value(code_edit.text)
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is String: code_edit.text = new_value

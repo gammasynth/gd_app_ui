@@ -13,3 +13,6 @@ func _widget_setup() -> Error:
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	update_setting_value(color)
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is Color: color_picker_button.color = new_value

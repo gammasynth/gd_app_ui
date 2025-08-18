@@ -16,3 +16,8 @@ func _widget_setup() -> Error:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	update_setting_value(new_text)
+
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is String: 
+		line_edit.text = new_value

@@ -49,3 +49,9 @@ func _on_spin_box_z_value_changed(value: float) -> void:
 		setting_change_function.call(vec)
 	
 	if modular_setting.modular_settings: modular_setting.modular_settings.settings.save_settings()
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is Vector3 or new_value is Vector3i: 
+		spin_box_x.value = new_value.x
+		spin_box_y.value = new_value.y
+		spin_box_z.value = new_value.z

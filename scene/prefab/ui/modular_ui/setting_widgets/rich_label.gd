@@ -9,3 +9,8 @@ func _widget_setup() -> Error:
 	return OK
 
 #update_setting_value(new_text)
+
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is String: 
+		rich_text_label.text = new_value

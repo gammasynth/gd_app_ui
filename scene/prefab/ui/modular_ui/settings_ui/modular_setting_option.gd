@@ -20,6 +20,8 @@ var setting_values: Array = []
 var widget_params: Array =[]
 var emit_name_with_value_change:bool = false
 
+var widgets: Array = []
+
 var is_new:bool = true
 
 static func get_setting_ui(setting_dictionary:Dictionary) -> ModularSettingOption:
@@ -54,6 +56,12 @@ func setup_from_settings(setting_dictionary:Dictionary):
 	widget_params = setting_dictionary.get("WIDGET_PARAMS")
 	emit_name_with_value_change = setting_dictionary.get("emit_name_with_value_change")
 
+func update_setting_value_from_external(new_value:Variant) -> void:
+	_update_setting_value_from_external(new_value)
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	for widget in widgets:
+		widget.update_setting_value_from_external(new_value)
 
 func _ready() -> void:
 	
@@ -83,6 +91,7 @@ func _ready() -> void:
 		var widget: SettingWidget = widget_packed_scene.instantiate()
 		
 		await Make.child(widget, widgets_hbox)
+		widgets.append(widget)
 		
 		var value: Variant = null; if widget_params.size() > 0 and setting_values.size() - 1 <= widget_index: value = setting_values[widget_index]
 		var params: Dictionary = {}; if widget_params.size() > 0 and widget_params.size() - 1 <= widget_index: params = widget_params[widget_index]
@@ -93,3 +102,5 @@ func _ready() -> void:
 		var _err: Error = await widget.widget_setup(widget_index, setting_change_function, value, params)
 		#warn("widget setup", err)
 		widget_index += 1
+	
+	

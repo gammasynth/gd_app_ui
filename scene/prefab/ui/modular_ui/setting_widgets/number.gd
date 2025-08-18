@@ -9,3 +9,7 @@ func _widget_setup() -> Error:
 
 func _on_spin_box_value_changed(value: float) -> void:
 	update_setting_value(value)
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is int or new_value is float: 
+		spin_box.value = new_value

@@ -84,6 +84,12 @@ func setup_button(this_button:Button):
 	if widget_params.has("button_mask"): this_button.button_mask = widget_params.get("button_mask")
 
 
+func update_setting_value_from_external(new_value:Variant) -> void:
+	_update_setting_value_from_external(new_value)
+
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	pass
+
 
 
 func update_setting_value(new_value:Variant) -> void:

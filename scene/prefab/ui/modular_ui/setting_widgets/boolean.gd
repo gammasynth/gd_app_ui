@@ -8,6 +8,9 @@ func _widget_setup() -> Error:
 	return OK
 
 
-func _on_check_box_button_down() -> void:
-	await get_tree().create_timer(0.01).timeout
-	update_setting_value(check_box.button_pressed)
+func _update_setting_value_from_external(new_value:Variant) -> void:
+	if new_value is bool: check_box.button_pressed = new_value
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	update_setting_value(toggled_on)
