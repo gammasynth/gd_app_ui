@@ -14,3 +14,5 @@ func _widget_setup() -> Error:
 func _update_setting_value_from_external(new_value:Variant) -> void:
 	if new_value is String: 
 		rich_text_label.text = new_value
+	else:
+		rich_text_label.text = str(setting_name + ": " + str(new_value))

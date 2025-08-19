@@ -2,6 +2,10 @@ extends MarginContainer
 
 class_name SettingWidget
 
+var setting_name:String = "":
+	get:
+		if modular_setting: return modular_setting.setting_name
+		return setting_name
 
 var modular_setting: ModularSettingOption = null
 
