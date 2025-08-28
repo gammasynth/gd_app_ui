@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3dvopc5o8bhy"]
 
 [ext_resource type="Script" uid="uid://bmoe6pnenv6tb" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_cutscene.gd" id="1_45nys"]
-[ext_resource type="Material" uid="uid://b6d7xegs7usy6" path="res://lib/gd_app_ui/resource/material/shader_material/canvas_item/op/black_to_transparent.material" id="3_2ynqs"]
+[ext_resource type="Material" uid="uid://b6d7xegs7usy6" path="res://lib/gd_app_ui/resource/material/shader_material/canvas_item/op/color_replace.material" id="3_2ynqs"]
 
 [node name="modular_cutscene" type="Control"]
 material = ExtResource("3_2ynqs")

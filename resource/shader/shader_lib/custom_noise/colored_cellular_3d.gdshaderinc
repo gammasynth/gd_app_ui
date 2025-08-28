@@ -1,5 +1,5 @@
 
-#include "res://lib/gd_app_ui/resource/shader/lib/noise/cellular3d.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/shader_lib/noise/cellular3d.gdshaderinc"
 
 uniform vec4 noise_albedo: source_color = vec4(1.0);
 
@@ -21,7 +21,7 @@ uniform float alpha_mod: hint_range(0.0, 10.0, 0.01) = 1.0;
 	//
 //}
 
-vec4 ominous_noise_color(vec2 uv) {
+vec4 cellular_noise_color(vec2 uv) {
 
 	vec2 n = cellular3d(vec3((uv+(offset + extra))*(scale * clamp(abs(sin(TIME) - TIME) * 20.1, 0.15, 2.0) * 1.55), (sin(TIME) * time_mod) + time_offset));
 	vec4 noise_color = vec4(n.x) * noise_albedo;

@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resource/shader/lib/shapes/circle_color.gdshaderinc"
-#include "res://lib/gd_app_ui/resource/shader/lib/gamma_noise/ominous_cellular_3d.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/shader_lib/shapes/circle_color.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/shader_lib/custom_noise/colored_cellular_3d.gdshaderinc"
 
 uniform float noise_mix: hint_range(0.0, 1.0, 0.01) = 0.5;
 
@@ -18,7 +18,7 @@ void fragment() {
 	
 	extra += travel * TIME;
 	
-	vec4 noise_color = ominous_noise_color(UV);
+	vec4 noise_color = cellular_noise_color(UV);
 	vec2 n = cellular3d(vec3((UV+(offset + extra))*(scale * clamp(abs(sin(TIME) - TIME) * 20.1, 0.15, 2.0) * 1.55), (sin(TIME) * time_mod) + time_offset));
 	
 	//noise_color.a = mix(noise_color.a, color.a, 0.5);

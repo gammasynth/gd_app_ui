@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-#include "res://lib/gd_app_ui/resource/shader/lib/op/color_replace.gdshaderinc"
+#include "res://lib/gd_app_ui/resource/shader/shader_lib/shapes/circle_color.gdshaderinc"
 
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
+uniform vec2 position;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -10,8 +10,9 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	vec4 color = texture(SCREEN_TEXTURE, UV);
-	color = replace_color(UV, color);
+	//vec2 center = mouse_control_position_main_window /
+	vec4 color = color_circle(UV, position);
+	//COLOR = vec4(vec3(dist), 1.0);
 	COLOR = color;
 }
 
