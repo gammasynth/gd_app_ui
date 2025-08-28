@@ -14,6 +14,7 @@ func _widget_setup() -> Error:
 
 
 func _on_spin_box_x_value_changed(value: float) -> void:
+	if updating_from_external: return
 	var vec :Vector2 = Vector2(spin_box_x.value, spin_box_y.value)
 	
 	modular_setting.setting_values[0] = (vec)
@@ -27,6 +28,7 @@ func _on_spin_box_x_value_changed(value: float) -> void:
 
 
 func _on_spin_box_y_value_changed(value: float) -> void:
+	if updating_from_external: return
 	var vec :Vector2 = Vector2(spin_box_x.value, spin_box_y.value)
 	
 	modular_setting.setting_values[0] = (vec)

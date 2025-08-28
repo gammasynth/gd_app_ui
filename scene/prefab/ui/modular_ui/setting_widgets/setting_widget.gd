@@ -14,6 +14,8 @@ var setting_change_function: Callable
 var default_value: Variant = null
 var widget_params: Dictionary = {}
 
+var updating_from_external:bool = false
+
 func widget_setup(_widget_index: int, _setting_change_function: Callable, _default_value: Variant, _widget_params: Dictionary) -> Error:
 	widget_index = _widget_index
 	setting_change_function = _setting_change_function
@@ -89,7 +91,9 @@ func setup_button(this_button:Button):
 
 
 func update_setting_value_from_external(new_value:Variant) -> void:
+	updating_from_external = true
 	_update_setting_value_from_external(new_value)
+	updating_from_external = false
 
 func _update_setting_value_from_external(new_value:Variant) -> void:
 	pass
@@ -97,6 +101,7 @@ func _update_setting_value_from_external(new_value:Variant) -> void:
 
 
 func update_setting_value(new_value:Variant) -> void:
+	if updating_from_external: return
 	if not is_node_ready(): await ready
 	if setting_change_function.is_null(): 
 		printerr("NULL SETTING CALLABLE!")
