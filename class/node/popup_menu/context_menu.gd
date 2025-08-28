@@ -36,11 +36,15 @@ func assemble_actions() -> void:
 		elif a is Dictionary:
 			if a.has("IS_CALLABLE") and a.get("IS_CALLABLE") and a.has("callable") and a.get("callable") is Callable:
 				add_item(action, idx)
-				if a.has("tooltip"): 
-					set_item_tooltip(idx, a.get("tooltip"))
-					print(get_item_tooltip(idx))
 			else:
-				assemble_submenu_actions(action, a, null, -1)
+				var context = a; if a.has("context_menu"): context = a.get("context_menu")
+				assemble_submenu_actions(action, context, null, idx)
+			if a.has("tooltip"): 
+				set_item_tooltip(idx, a.get("tooltip"))
+			if a.has("disable") and a.get("disable"):
+				set_item_disabled(idx, true)
+			if a.has("disabled_callable") and a.get("disabled_callable") is Callable:
+				set_item_disabled(idx, a.get("disabled_callable").call())
 		elif a is String:
 			if a == "TITLE":
 				add_item(action, idx)
@@ -69,15 +73,20 @@ func assemble_submenu_actions(action: String, _sub_actions: Dictionary, _submenu
 		elif this is Dictionary:
 			if this.has("IS_CALLABLE") and this.get("IS_CALLABLE") and this.has("callable") and this.get("callable") is Callable:
 				submenu.add_item(subaction, idx)
-				if this.has("tooltip"): submenu.set_item_tooltip(idx, this.get("tooltip"))
-				print(submenu.get_item_tooltip(idx))
 			else:
-				var subsubmenu = ContextMenu.setup(null, this)
-				submenu.add_submenu_node_item(subaction, subsubmenu)
+				var context = this; if this.has("context_menu"): context = this.get("context_menu")
+				var subsubmenu = ContextMenu.setup(null, context)
+				submenu.add_submenu_node_item(subaction, subsubmenu, idx)
 				subsubmenu.assemble_actions()
+			
+			if this.has("tooltip"): submenu.set_item_tooltip(idx, this.get("tooltip"))
+			if this.has("disable") and this.get("disable"):
+				set_item_disabled(idx, true)
+			if this.has("disabled_callable") and this.get("disabled_callable") is Callable:
+				set_item_disabled(idx, this.get("disabled_callable").call())
 		else:
 			var subsubmenu = ContextMenu.setup(null, this)
-			submenu.add_submenu_node_item(subaction, subsubmenu)
+			submenu.add_submenu_node_item(subaction, subsubmenu, idx)
 			subsubmenu.assemble_actions()
 		idx += 1
 
