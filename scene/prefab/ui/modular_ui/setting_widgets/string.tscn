@@ -9,7 +9,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_nwj4n")
 
 [node name="LineEdit" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(200, 28)
 layout_mode = 2
+expand_to_text_length = true
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
