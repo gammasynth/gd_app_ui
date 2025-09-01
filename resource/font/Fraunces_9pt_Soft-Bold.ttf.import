@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dresheixlu03"
-path="res://.godot/imported/Nohemi-Regular.otf-9c38c5f7c2b2337d418ae5f8f8129e2c.fontdata"
+uid="uid://36jdw873so66"
+path="res://.godot/imported/Fraunces_9pt_Soft-Bold.ttf-25b8bdb35e406edae075d33d126d474e.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/Nohemi-Regular.otf"
-dest_files=["res://.godot/imported/Nohemi-Regular.otf-9c38c5f7c2b2337d418ae5f8f8129e2c.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/Fraunces_9pt_Soft-Bold.ttf"
+dest_files=["res://.godot/imported/Fraunces_9pt_Soft-Bold.ttf-25b8bdb35e406edae075d33d126d474e.fontdata"]
 
 [params]
 

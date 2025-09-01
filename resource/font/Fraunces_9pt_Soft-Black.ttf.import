@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d0uxpxyxf3r2i"
-path="res://.godot/imported/Fraunces_9pt_Soft-Black.ttf-6b228252a1dd89f2f5cdba48d9f401a7.fontdata"
+path="res://.godot/imported/Fraunces_9pt_Soft-Black.ttf-9611a8c48f96d1bcdf528b592b808a51.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/Fraunces_9pt_Soft-Black.ttf"
-dest_files=["res://.godot/imported/Fraunces_9pt_Soft-Black.ttf-6b228252a1dd89f2f5cdba48d9f401a7.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/Fraunces_9pt_Soft-Black.ttf"
+dest_files=["res://.godot/imported/Fraunces_9pt_Soft-Black.ttf-9611a8c48f96d1bcdf528b592b808a51.fontdata"]
 
 [params]
 

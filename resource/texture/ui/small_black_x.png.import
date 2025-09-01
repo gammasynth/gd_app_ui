@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lltkb3bla7oc"
-path="res://.godot/imported/white_8x8_edge_tile.png-06bc1df85ead33963a3054d7e0003963.ctex"
+uid="uid://dktpymsqmumjc"
+path="res://.godot/imported/small_black_x.png-e028b38d4eed4a87f55d878319ad48be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/texture/tile/white_8x8_edge_tile.png"
-dest_files=["res://.godot/imported/white_8x8_edge_tile.png-06bc1df85ead33963a3054d7e0003963.ctex"]
+source_file="res://lib/gd_app_ui/resource/texture/ui/small_black_x.png"
+dest_files=["res://.godot/imported/small_black_x.png-e028b38d4eed4a87f55d878319ad48be.ctex"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://36jdw873so66"
-path="res://.godot/imported/Fraunces_9pt_Soft-Bold.ttf-c055417fc4060c0c3d54af3a31a4f7fa.fontdata"
+uid="uid://cu1288v4gmppk"
+path="res://.godot/imported/Literata-Black.ttf-4249fc9aca0c064208689f0c85defb26.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/Fraunces_9pt_Soft-Bold.ttf"
-dest_files=["res://.godot/imported/Fraunces_9pt_Soft-Bold.ttf-c055417fc4060c0c3d54af3a31a4f7fa.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/Literata-Black.ttf"
+dest_files=["res://.godot/imported/Literata-Black.ttf-4249fc9aca0c064208689f0c85defb26.fontdata"]
 
 [params]
 

@@ -30,7 +30,9 @@ var emit_name_with_value_change:bool = false
 
 var name:String = "Settings"
 
-func _init(_name:String="settings") -> void: return
+func _init(_name:String="settings") -> void: 
+	name = _name
+	return
 
 
 #func get_settings_values() -> Dictionary:
@@ -208,23 +210,33 @@ func instance_ui_window(ui_window_parent:Node, at_position:Vector2i=Vector2i(-1,
 	
 	window.min_size = Vector2i.ZERO
 	window.wrap_controls = true
+	window.popup_window = true
+	#window.always_on_top = true
+	window.exclusive = false
+	window.transparent = true
+	window.borderless = true
 	
-	window.set_flag(Window.FLAG_TRANSPARENT, true)
+	window.close_requested.connect(func(): window.queue_free())
+	
+	#window.set_flag(Window.FLAG_TRANSPARENT, true)
+	#window.set_flag(Window.FLAG_POPUP, true)
 	
 	#window.set_flag(Window.FLAG_RESIZE_DISABLED, true)
 	#window.keep_title_visible = true
 	#window.borderless = true
 	
 	await Make.child(window, ui_window_parent)
-	window.set_flag(Window.FLAG_RESIZE_DISABLED, true)
+	
 	
 	var this_ui: ModularSettingsMenu = await ModularSettingsMenu.build_settings_ui(self, window)
+	
+	window.size = this_ui.size
 	
 	if at_position == Vector2i(-1,-1):
 		at_position = DisplayServer.mouse_get_position() - (window.size / 2)
 	window.position = at_position
 	
-	window.borderless = true
+	
 	
 	return this_ui
 

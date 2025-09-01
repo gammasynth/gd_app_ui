@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://druwgsmu6r4yw"
-path="res://.godot/imported/GohuFontuni11NerdFont-Regular.ttf-ff6ddbb1533c33bccb82aaf39c49cffb.fontdata"
+uid="uid://cwjomy78x2f2r"
+path="res://.godot/imported/etude_noire_regular.ttf-96db40dbbebee82ee4508796c41185e6.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/GohuFontuni11NerdFont-Regular.ttf"
-dest_files=["res://.godot/imported/GohuFontuni11NerdFont-Regular.ttf-ff6ddbb1533c33bccb82aaf39c49cffb.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/etude_noire_regular.ttf"
+dest_files=["res://.godot/imported/etude_noire_regular.ttf-96db40dbbebee82ee4508796c41185e6.fontdata"]
 
 [params]
 

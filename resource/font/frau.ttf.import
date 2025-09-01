@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://sejbm8i5yshm"
-path="res://.godot/imported/Vaticanus.ttf-27e88333a10005c189d6327853f46d10.fontdata"
+uid="uid://1tytv6dg1ux6"
+path="res://.godot/imported/frau.ttf-7abd127d45e60f06e3fc75531c634c2a.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/Vaticanus.ttf"
-dest_files=["res://.godot/imported/Vaticanus.ttf-27e88333a10005c189d6327853f46d10.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/frau.ttf"
+dest_files=["res://.godot/imported/frau.ttf-7abd127d45e60f06e3fc75531c634c2a.fontdata"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cnji0hctq4gul"
-path="res://.godot/imported/OfficeCodePro-Light.otf-f758da600a7e08cb1a34084d05d3f536.fontdata"
+uid="uid://cmmmqdw3s8f3g"
+path="res://.godot/imported/frau-unifon.ttf-cbdd2ee491037826d65bde90f4f8753a.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/OfficeCodePro-Light.otf"
-dest_files=["res://.godot/imported/OfficeCodePro-Light.otf-f758da600a7e08cb1a34084d05d3f536.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/frau-unifon.ttf"
+dest_files=["res://.godot/imported/frau-unifon.ttf-cbdd2ee491037826d65bde90f4f8753a.fontdata"]
 
 [params]
 

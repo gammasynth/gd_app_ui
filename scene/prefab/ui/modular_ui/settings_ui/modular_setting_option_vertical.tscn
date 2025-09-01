@@ -4,7 +4,6 @@
 
 [node name="modular_setting_option" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
-mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
@@ -13,17 +12,14 @@ script = ExtResource("1_ld037")
 
 [node name="hbox" type="VBoxContainer" parent="."]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/separation = 1
 
 [node name="center_box" type="CenterContainer" parent="hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 
 [node name="labels_hbox" type="HBoxContainer" parent="hbox/center_box"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="setting_label" type="RichTextLabel" parent="hbox/center_box/labels_hbox"]
 layout_mode = 2

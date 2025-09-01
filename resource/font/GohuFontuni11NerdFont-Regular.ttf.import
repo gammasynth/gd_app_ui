@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cmmmqdw3s8f3g"
-path="res://.godot/imported/frau-unifon.ttf-971111552156e02b9f80b635a3caeaf8.fontdata"
+uid="uid://druwgsmu6r4yw"
+path="res://.godot/imported/GohuFontuni11NerdFont-Regular.ttf-2fa25460d12c7c7c742004475da2aa3c.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/frau-unifon.ttf"
-dest_files=["res://.godot/imported/frau-unifon.ttf-971111552156e02b9f80b635a3caeaf8.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/GohuFontuni11NerdFont-Regular.ttf"
+dest_files=["res://.godot/imported/GohuFontuni11NerdFont-Regular.ttf-2fa25460d12c7c7c742004475da2aa3c.fontdata"]
 
 [params]
 

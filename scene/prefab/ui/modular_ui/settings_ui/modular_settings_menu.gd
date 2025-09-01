@@ -3,7 +3,6 @@ extends DatabasePanelContainer
 class_name ModularSettingsMenu
 
 @onready var menu_title: RichTextLabel = $margin/menu_vbox/title_header/hbox/title_margin/menu_title
-
 @onready var settings_vbox: VBoxContainer = $margin/menu_vbox/settings_vbox
 
 var settings: Settings = null

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blrf50bawxpjd"
-path="res://.godot/imported/white_8x8_tile.png-c309f506bc1d6b561dedb7722029c28b.ctex"
+uid="uid://ds46qmsooilyx"
+path="res://.godot/imported/white_8x8_autotile.png-f9b220da8e750c1412dea4f31228ccb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/texture/tile/white_8x8_tile.png"
-dest_files=["res://.godot/imported/white_8x8_tile.png-c309f506bc1d6b561dedb7722029c28b.ctex"]
+source_file="res://lib/gd_app_ui/resource/texture/tile/white_8x8_autotile.png"
+dest_files=["res://.godot/imported/white_8x8_autotile.png-f9b220da8e750c1412dea4f31228ccb8.ctex"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cu1288v4gmppk"
-path="res://.godot/imported/Literata-Black.ttf-02935a72fecc40682dc74513241667f1.fontdata"
+uid="uid://sejbm8i5yshm"
+path="res://.godot/imported/Vaticanus.ttf-0b5b66d548005a397aa67ca6d4addd5a.fontdata"
 
 [deps]
 
-source_file="res://lib/gd_app_ui/assets/font/Literata-Black.ttf"
-dest_files=["res://.godot/imported/Literata-Black.ttf-02935a72fecc40682dc74513241667f1.fontdata"]
+source_file="res://lib/gd_app_ui/resource/font/Vaticanus.ttf"
+dest_files=["res://.godot/imported/Vaticanus.ttf-0b5b66d548005a397aa67ca6d4addd5a.fontdata"]
 
 [params]
 
