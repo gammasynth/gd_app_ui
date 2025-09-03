@@ -6,6 +6,9 @@ uniform vec4 line_color : source_color = vec4(1);
 uniform float line_thickness : hint_range(0, 20) = 0.0;
 uniform bool add_margins = true;
 
+uniform bool pulse_outline = false;
+uniform float pulse_speed = 1.0;
+
 void vertex() {
     if (add_margins) {
         VERTEX += (UV * 2.0 - 1.0) * line_thickness;
@@ -53,6 +56,15 @@ void fragment() {
 		if (use_fill == true) {
 			color = fill_color;
 		}
-        COLOR = mix(color, line_color, outline - color.a);
+		
+		if (pulse_outline) {
+			float f = (pow(outline,outline) - (color.a - (line_thickness))) + outline;
+			f += smoothstep(color.a, f, f) * pow(sin(TIME * pulse_speed) + outline + sin(TIME * pulse_speed * line_thickness) + (outline * 0.5) + line_thickness, f);
+			COLOR = mix(color, line_color, f);
+		}
+		else {
+        	COLOR = mix(color, line_color, outline - color.a);
+		}
+		
     }
 }
