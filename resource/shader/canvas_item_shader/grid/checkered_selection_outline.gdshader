@@ -22,9 +22,9 @@ void fragment() {
     vec4 trans = fill_color; // Transparent color
     vec4 grid_color = line_color; // Border color
     vec4 color = trans; // Default to transparent
-	
-	
-	
+
+
+
     // Define the border thickness using your measurements
     vec2 texture_size = vec2(textureSize(base_texture, 0)); // Texture dimensions in pixels
     vec2 size = 1.0 / texture_size; // One pixel's size in UV units (1/texture_width, 1/texture_height)
@@ -39,7 +39,7 @@ void fragment() {
     // Define the rectangle's boundaries (full texture size)
     float rect_width = 1.0; // Full width of the texture
     float rect_height = 1.0; // Full height of the texture
-	
+
 	vec2 line_size = size * line_mod;
 
     // Check if the pixel is within the border region
