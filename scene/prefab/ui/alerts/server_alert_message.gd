@@ -7,13 +7,15 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		return
 	
-	alert_type_text.text = str("[center]" + alert_type_to_string(alert_type) + "[/center]")
+	alert_type_text.text = Text.center(alert_type_to_string(alert_type), use_centering)
 	alert_type_text.modulate = ALERT_TYPE_COLORS[alert_type]
+	if not use_colors: alert_type_text.modulate = Color.WHITE
 	
-	alert_title_text.text = str("[center]" + alert_title + "[/center]")
+	alert_title_text.text = Text.center(alert_title, use_centering)
 	alert_title_text.modulate = ALERT_TITLE_COLORS[alert_type]
+	if not use_colors: alert_title_text.modulate = Color.WHITE
 	
-	alert_message_text.text = str("[center]" + alert_message + "[/center]")
+	alert_message_text.text = Text.center(alert_message, use_centering)
 	
 	
 	

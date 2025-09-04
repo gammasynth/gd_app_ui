@@ -10,10 +10,12 @@ class_name AlertMessage
 #@onready var game:Game = ui.get_parent()
 #@onready var app:App = game.get_parent()
 
+@export var use_centering:bool=true
+@export var use_colors:bool=true
 
-@onready var alert_type_text: RichTextLabel = $MarginContainer/AlertVBox/AlertTypeText
-@onready var alert_title_text: RichTextLabel = $MarginContainer/AlertVBox/AlertTitleText
-@onready var alert_message_text: RichTextLabel = $MarginContainer/AlertVBox/AlertMessageText
+@export var alert_type_text: RichTextLabel
+@export var alert_title_text: RichTextLabel
+@export var alert_message_text: RichTextLabel
 
 
 @onready var begin_fade_timer: Timer = $BeginFadeTimer
@@ -55,14 +57,15 @@ func create_alert_message(alert:Alert):
 
 
 func _ready() -> void:
-	
-	alert_type_text.text = str("[center]" + alert_type_to_string(alert_type) + "[/center]")
+	alert_type_text.text = Text.center(alert_type_to_string(alert_type), use_centering)
 	alert_type_text.modulate = ALERT_TYPE_COLORS[alert_type]
+	if not use_colors: alert_type_text.modulate = Color.WHITE
 	
-	alert_title_text.text = str("[center]" + alert_title + "[/center]")
+	alert_title_text.text = Text.center(alert_title, use_centering)
 	alert_title_text.modulate = ALERT_TITLE_COLORS[alert_type]
+	if not use_colors: alert_title_text.modulate = Color.WHITE
 	
-	alert_message_text.text = str("[center]" + alert_message + "[/center]")
+	alert_message_text.text = Text.center(alert_message, use_centering)
 	
 	
 	

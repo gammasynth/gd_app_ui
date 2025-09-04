@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cv0iao8vgjlt3" path="res://lib/gd_app_ui/scene/prefab/ui/alerts/alert_message.gd" id="1_v0dry"]
 
-[node name="AlertMessage" type="MarginContainer"]
+[node name="AlertMessage" type="MarginContainer" node_paths=PackedStringArray("alert_type_text", "alert_title_text", "alert_message_text")]
 custom_minimum_size = Vector2(384, 120)
 offset_right = 384.0
 offset_bottom = 187.0
 mouse_filter = 2
 script = ExtResource("1_v0dry")
+alert_type_text = NodePath("MarginContainer/AlertVBox/AlertTypeText")
+alert_title_text = NodePath("MarginContainer/AlertVBox/AlertTitleText")
+alert_message_text = NodePath("MarginContainer/AlertVBox/AlertMessageText")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 2

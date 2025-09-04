@@ -2,13 +2,11 @@ extends Control
 
 class_name AlertSystemUI
 
-
-@onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
-
-@onready var alerts_v_box: VBoxContainer = $AlertsScrollBox/AlertsVBox
+@export var alerts_v_box: VBoxContainer
 
 @export var alert_message_path:String = "res://lib/gd_app_ui/scene/prefab/ui/alerts/alert_message.tscn"
 @export var server_alert_message_path:String = "res://lib/gd_app_ui/scene/prefab/ui/alerts/server_alert_message.tscn"
+
 
 
 func initialize_alert_system():

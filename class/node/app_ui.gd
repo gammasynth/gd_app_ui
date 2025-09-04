@@ -81,14 +81,14 @@ func _initialized() -> void:
 	
 	app.app_starting.connect(app_ui_starting)
 	app.pre_load.connect(start_loading_screen)
+	_app_ui_initialized()
 
+func _app_ui_initialized() -> void: pass
 
 
 func app_ui_starting() -> void: 
 	app.ui_subduing = true
-	
 	setup_window()
-	
 	
 	#splash_screen.play_on_ready = false
 	#splash_screen.finish_on_audio = true
