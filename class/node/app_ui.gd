@@ -13,22 +13,8 @@ const BASE_WINDOW_SIZE := Vector2(1152, 648)
 @export var fixed_window_size := Vector2(0,0)
 
 
-var loading_screen : ModularLoadingScreen: get = _get_loading_screen
-
-@export var custom_loading_screen_scene_path: String = ""
-func _get_loading_screen() -> ModularLoadingScreen: 
-	if loading_screen and is_instance_valid(loading_screen): return loading_screen
-	#if app.registry_system: 
-		#var scene = Registry.pull("generic_modular_ui", "modular_loading_screen.tscn")
-		#if scene: screen = scene.instantiate()
-	var loading_screen_path:String = "res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.tscn"
-	if not custom_loading_screen_scene_path.is_empty(): loading_screen_path = custom_loading_screen_scene_path;
-	
-	if not loading_screen: loading_screen = load(loading_screen_path).instantiate()
-	current_loading_screen = loading_screen
-	return loading_screen
-
-var current_loading_screen : ModularLoadingScreen = null
+var loading_screen : ModularLoadingScreen
+@export var loading_screen_ui_path: String = "res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.tscn"
 
 var cutscene : ModularCutscene :
 	set(c):
@@ -70,7 +56,10 @@ var chat_system_ui:ChatSystemUI = null
 var splashing: bool = false
 
 
-
+func get_loading_screen() -> ModularLoadingScreen:
+	if loading_screen: return loading_screen
+	loading_screen = load(loading_screen_ui_path).instantiate()
+	return loading_screen
 
 
 func _initialized() -> void:
@@ -135,8 +124,9 @@ func setup_window() -> void:
 func start_loading_screen() -> Error:
 	app.ui_subduing = true
 	app.state = app.APP_STATES.LOADING
-	await Make.child(loading_screen, self)
 	
+	var load_screen:ModularLoadingScreen=get_loading_screen()
+	if not load_screen.is_inside_tree(): await Make.child(load_screen, self)
 	loading_screen.setup_loader(App.load_tracker)
 	
 	
@@ -151,8 +141,6 @@ func cutscene_ended() -> void:
 		splashing = false
 		splashed.emit()
 
-func loading_screen_finished() -> void:
-	loading_screen.queue_free()
 
 
 

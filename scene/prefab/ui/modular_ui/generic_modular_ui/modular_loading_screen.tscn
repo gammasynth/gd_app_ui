@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_dhlv7")
+await_fadeout_time = null
 margin_all = 200
 bar_size = 5.0
 
@@ -61,6 +62,8 @@ layout_mode = 2
 mouse_filter = 2
 step = 1.0
 show_percentage = false
+indeterminate = true
+editor_preview_indeterminate = false
 
 [node name="description_text" type="RichTextLabel" parent="menu_margin/vbox"]
 layout_mode = 2

@@ -26,7 +26,7 @@ func _widget_setup() -> Error:
 			if item_def.has("ITEM_NAME") and item_def.get("ITEM_NAME") is String:
 				var item_name: String = item_def.get("ITEM_NAME")
 				
-				var accel : Key = 0
+				var accel : Key = 0 as Key
 				if item_def.has("ACCEL") and item_def.get("ACCEL") is Key: accel = item_def.get("ACCEL")
 				
 				items_dict.set(item_index, item_name)

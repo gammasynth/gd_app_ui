@@ -3,6 +3,9 @@ extends Control
 
 class_name ModularLoadingScreen
 
+@export var await_fadeout_time:float=0.5
+@export var fadeout_time:float=1.0
+
 @onready var menu_margin: MarginContainer = $menu_margin
 @onready var menu_vbox: VBoxContainer = $menu_margin/vbox
 
@@ -60,7 +63,13 @@ var load_tracker: LoadTracker = null
 
 func setup_loader(_load_tracker:LoadTracker):
 	load_tracker = _load_tracker
+	load_tracker.loading_screen = self
 	load_tracker.progress_bar = progress_bar
 	load_tracker.event_text = event_text
 	load_tracker.description_text = description_text
-	load_tracker.finished.connect(Make.fade_delete.bind(self))
+	load_tracker.finished.connect(load_tracker_finished)
+
+func load_tracker_finished():
+	load_tracker.progress_bar.value = load_tracker.progress_bar.max_value
+	await get_tree().create_timer(await_fadeout_time).timeout
+	Make.fade_delete(self, fadeout_time)
