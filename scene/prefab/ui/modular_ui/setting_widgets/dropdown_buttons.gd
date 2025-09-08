@@ -33,7 +33,7 @@ func _widget_setup() -> Error:
 				popup.add_item(item_name, -1, accel)
 		
 		item_index += 1
-	menu_button.text = items_dict.get(default_value)
+	menu_button.text = str("   " + items_dict.get(int(default_value)) + "   ")
 	return OK
 
 
@@ -41,9 +41,9 @@ func _widget_setup() -> Error:
 
 func _on_index_pressed(index: int) -> void:
 	update_setting_value(index)
-	menu_button.text = items_dict.get(index)
+	menu_button.text = str("   " + items_dict.get(index) + "   ")
 
 func _update_setting_value_from_external(new_value:Variant) -> void:
 	if new_value is int: 
 		if items_dict.has(new_value):
-			menu_button.text = items_dict.get(new_value)
+			menu_button.text = str("   " + items_dict.get(new_value) + "   ")

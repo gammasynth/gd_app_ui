@@ -8,6 +8,7 @@ offset_bottom = 40.0
 script = ExtResource("1_v5ynf")
 
 [node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 16)
 layout_mode = 2
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

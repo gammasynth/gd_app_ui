@@ -12,6 +12,8 @@ var closing: bool = false
 var dragging: bool = false
 var drag_offset: Vector2i
 
+var options:Dictionary = {} # setting_name String : option ModularSettingOption
+
 static func build_settings_ui(settings_obj:Settings, ui_parent: Node = null) -> ModularSettingsMenu:
 	
 	var settings_ui: ModularSettingsMenu
@@ -36,6 +38,9 @@ static func build_settings_ui(settings_obj:Settings, ui_parent: Node = null) -> 
 		
 		var option:ModularSettingOption = ModularSettingOption.get_setting_ui(setting_dictionary)
 		option.modular_settings = settings_ui
+		settings_ui.settings.setting_value_was_set.connect(option.setting_value_was_set)
+		
+		settings_ui.options.set(prop, option)
 		
 		if ui_parent: await Make.child(option, settings_ui.settings_vbox)
 	

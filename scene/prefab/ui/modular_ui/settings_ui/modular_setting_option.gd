@@ -56,6 +56,12 @@ func setup_from_settings(setting_dictionary:Dictionary):
 	widget_params = setting_dictionary.get("WIDGET_PARAMS")
 	emit_name_with_value_change = setting_dictionary.get("emit_name_with_value_change")
 
+func setting_value_was_set(for_setting_name:String, new_values:Array) -> void:
+	var value:Variant = new_values
+	if setting_name == for_setting_name: 
+		if new_values.size() == 1: value = new_values.get(0)
+		update_setting_value_from_external(value)
+
 func update_setting_value_from_external(new_value:Variant) -> void:
 	_update_setting_value_from_external(new_value)
 

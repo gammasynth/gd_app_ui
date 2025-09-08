@@ -63,6 +63,7 @@ func setup_spin_box_widget(this_spin_box:SpinBox):
 	if widget_params.has("value"): this_spin_box.value = widget_params.get("value")
 	
 	if widget_params.has("rounded"): this_spin_box.rounded = widget_params.get("rounded")
+	
 
 
 
@@ -88,7 +89,26 @@ func setup_button(this_button:Button):
 	if widget_params.has("toggle_mode"): this_button.toggle_mode = widget_params.get("toggle_mode")
 	
 	if widget_params.has("button_mask"): this_button.button_mask = widget_params.get("button_mask")
+	
+	if widget_params.has("disabled"): this_button.disabled = widget_params.get("disabled")
+	
+	var disabled_callable = null
+	if widget_params.has("disabled_callable"): 
+		var f = widget_params.get("disabled_callable")
+		if f is Callable:
+			var v = f.call()
+			if v is bool: 
+				disabled_callable = f
+				this_button.disabled = v
+	
+	if widget_params.has("connect_disable_signal"):
+		var signal_disable = widget_params.get("connect_disable_signal")
+		if signal_disable is Signal:
+			signal_disable.connect(signal_to_toggle_button_disabled.bind(this_button))
 
+
+
+func signal_to_toggle_button_disabled(toggle_disabled:bool, button:Button) -> void: button.disabled = toggle_disabled
 
 func update_setting_value_from_external(new_value:Variant) -> void:
 	updating_from_external = true

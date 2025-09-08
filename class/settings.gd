@@ -16,6 +16,9 @@ extends RefCounted
 
 class_name Settings
 
+signal spawned_window(window:Window)
+signal setting_value_was_set(value_name:String, new_value:Array)
+
 const DEFAULT_SETTINGS_FOLDER = "user://settings/"
 #enum SETTING_TYPES {empty, number, vector2, vector3, boolean, color, string}
 
@@ -111,6 +114,19 @@ func prepare_setting(setting_name:String, setting_types:Array[String], setting_c
 	setting_properties.set(setting_name, new_setting)
 	return
 
+func get_setting_value(setting_name:String) -> Variant:
+	var setting: Variant = null
+	var setting_dictionary: Dictionary = {}
+	if setting_properties.has(setting_name): setting_dictionary = setting_properties.get(setting_name)
+	if setting_dictionary.has("SETTING_VALUES"): setting = setting_dictionary.get("SETTING_VALUES")
+	if setting is Array and setting.size() == 1: setting = setting.get(0)
+	return setting
+
+func set_setting_value(setting_name:String, new_values:Array=[], update_ui:bool=true) -> void:
+	var setting_dictionary: Dictionary = {}
+	if setting_properties.has(setting_name): setting_dictionary = setting_properties.get(setting_name)
+	if setting_dictionary.has("SETTING_VALUES"): setting_dictionary.set("SETTING_VALUES", new_values)
+	if update_ui: setting_value_was_set.emit(setting_name, new_values)
 
 
 
@@ -123,7 +139,7 @@ func finish_prepare_settings() -> void:
 	if not loaded:
 		# Regardless if we have an existing file above or not, we will need to start recording this Settings as a file, now, and whenever changed.
 		var err: Error = save_settings()
-		print("couldnt save file!", err)
+		if err != OK: print("couldnt save file!", err)
 	
 	all_settings.erase(name)
 	all_settings.get_or_add(name, self)
@@ -148,19 +164,21 @@ func load_settings() -> bool:
 	var loaded_settings_name: String = loaded_settings_obj_dict.get("NAME")
 	var loaded_settings_values_dict: Dictionary = loaded_settings_obj_dict.get("ALL_SETTING_VALUES")
 	var loaded_property_names: Array = loaded_settings_values_dict.keys()
-	
-	
-	
-	var loaded_settings_hash: int = get_settings_hash(loaded_settings_name, loaded_property_names)
-	var my_hash: int = get_settings_hash()
-	
-	if loaded_settings_hash != my_hash: return false
+	#
+	#
+	# BUG SOMETHING IS WRONG WITH HASHING COMPARE SYSTEM !
+	#var loaded_settings_hash: int = get_settings_hash(loaded_settings_name, loaded_property_names)
+	#var my_hash: int = get_settings_hash()
+	#
+	#if loaded_settings_hash != my_hash: return false
 	
 	# these files match hashes as the same name and properties lists
 	# we can load the values that were saved to this setting file (from last session maybe?) instead of using our Settings Objects default property values.
 	
 	for prop: String in loaded_settings_values_dict:
-		var this_setting: Dictionary = setting_properties.get(prop)
+		var this_setting: Dictionary = {}
+		if setting_properties.has(prop): this_setting = setting_properties.get(prop)
+		else: setting_properties.set(prop, this_setting)
 		
 		var vals: Array = loaded_settings_values_dict.get(prop)
 		
@@ -194,6 +212,19 @@ func load_settings() -> bool:
 		vals = new_vals
 		this_setting["SETTING_VALUES"] = vals
 	
+	#var settings_dict: Dictionary = File.load_dict_file(settings_file_path)
+	#
+	#for prop: String in setting_properties:
+		#var this_setting: Dictionary = setting_properties.get(prop)
+		#var setting_name:String = this_setting.get("SETTING_NAME")
+		#var setting_callable: Callable = this_setting["SETTING_CHANGE_FUNCTION"]
+		#var setting_values: Variant = this_setting["SETTING_VALUES"]
+		#if setting_values is Array and setting_values.size() == 1: setting_values = setting_values.get(0)
+		#if emit_name_with_value_change:
+			#setting_callable.call(setting_values, setting_name)
+		#else:
+			#setting_callable.call(setting_values)
+	
 	return true
 
 
@@ -210,8 +241,8 @@ func instance_ui_window(ui_window_parent:Node, at_position:Vector2i=Vector2i(-1,
 	
 	window.min_size = Vector2i.ZERO
 	window.wrap_controls = true
-	window.popup_window = true
-	#window.always_on_top = true
+	#window.popup_window = true
+	window.always_on_top = true
 	window.exclusive = false
 	window.transparent = true
 	window.borderless = true
@@ -237,7 +268,7 @@ func instance_ui_window(ui_window_parent:Node, at_position:Vector2i=Vector2i(-1,
 	window.position = at_position
 	
 	
-	
+	spawned_window.emit(window)
 	return this_ui
 
 

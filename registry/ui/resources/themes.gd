@@ -2,7 +2,7 @@ extends Registry
 
 func _gather_subregistry_paths() -> Error:
 	#subregistry_paths.append("res://src/registry/entities/items.gd")
-	check_library_for_registries("res://", true, "themes")
+	#check_library_for_registries("res://", true, "theme")
 	return OK
 
 func _boot_registry():
@@ -13,8 +13,8 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://lib/gd_app_ui/resources/themes/",
-		"res://src/resources/themes/"
+		"res://lib/gd_app_ui/resource/theme/",
+		"res://resource/theme/"
 	]
 	#search_for_loadable_content_by_name("res://", "themes")
 	return OK
