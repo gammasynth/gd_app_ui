@@ -1,6 +1,8 @@
 extends PopupMenu
 class_name ContextMenu
 
+signal spawned_menu(context_menu:ContextMenu)
+
 enum MENU_TYPES {MANUAL, TAP, RIGHT_CLICK}
 var menu_type:MENU_TYPES = MENU_TYPES.TAP
 
@@ -9,7 +11,8 @@ var actions: Dictionary
 var forced_position:Variant = null
 
 func create(_show: bool = true) -> void:
-	App.app.get_window().add_child(self)
+	wrap_controls = true
+	App.app.add_child(self)
 	
 	if forced_position:
 		if forced_position is Vector2 or forced_position is Vector2i:
@@ -24,6 +27,7 @@ func create(_show: bool = true) -> void:
 	assemble_actions()
 	
 	if _show: popup()
+	spawned_menu.emit(self)
 
 
 func assemble_actions() -> void:
