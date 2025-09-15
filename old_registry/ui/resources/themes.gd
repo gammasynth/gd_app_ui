@@ -13,8 +13,8 @@ func _boot_registry():
 	#uses_entry_groups = false
 	#entry_class = RegistryEntry.new()
 	directories_to_load = [
-		"res://lib/gd_app_ui/resource/theme/",
-		"res://resource/theme/"
+		#"res://lib/gd_app_ui/resource/theme/",
+		#"res://resource/theme/"
 	]
 	#search_for_loadable_content_by_name("res://", "themes")
 	return OK

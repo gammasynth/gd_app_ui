@@ -5,6 +5,15 @@ var popup:PopupMenu = null
 
 var items_dict:Dictionary = {}
 
+# When preparing a new setting that will use "dropdown_buttons" here is an example of the widget dictionary:
+	
+	#var theme_settings_widget_params : Dictionary = {
+		#"WINDOW_TITLE" : "themes", # telling the dropdown widget to have a title above list
+		#"ITEM_0" : "dark", # simply adding an item button to the dropdown as a string
+		#"ITEM_1" : { "ITEM_NAME" : "light" }, # alternatively adding an item to dropdown as Dictionary
+		#"ITEM_2" : { "ITEM_NAME" : "custom", "ACCEL" : KEY_C } # optional accel shortcut can be added
+	#}
+
 func _widget_setup() -> Error:
 	popup = menu_button.get_popup()
 	popup.index_pressed.connect(_on_index_pressed)
