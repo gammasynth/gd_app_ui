@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform sampler2D base_texture: hint_default_transparent;
 uniform float line_mod = 1.0;
 uniform float line_speed = 1.0;
+uniform float size_mod = 1.0;
 
 uniform float checker_speed = 3.5;
 
@@ -27,7 +28,7 @@ void fragment() {
 
     // Define the border thickness using your measurements
     vec2 texture_size = vec2(textureSize(base_texture, 0)); // Texture dimensions in pixels
-    vec2 size = 1.0 / texture_size; // One pixel's size in UV units (1/texture_width, 1/texture_height)
+    vec2 size = (1.0 / texture_size) * size_mod; // One pixel's size in UV units (1/texture_width, 1/texture_height)
 	//vec2 size = TEXTURE_PIXEL_SIZE;// * 0.0125 * 2.0 * 516.0;
     //size.x *= 1.025;
     //size.y *= 1.135;
@@ -52,7 +53,7 @@ void fragment() {
 				grey = 0.0;
 			}
 			// Calculate pixel coordinates in texture space
-            vec2 pixel_coord = uv * texture_size;
+            vec2 pixel_coord = (uv * texture_size) / size_mod;
             // Alternate grey based on pixel position
             float checker = mod(floor(pixel_coord.x + floor(TIME * checker_speed * 2.0)) + floor(pixel_coord.y + floor(TIME * checker_speed)), 2.0);
             grey = mix(0.5, 0.75, checker * grey); // Alternate between two grey shades (0.5 and 0.75)
@@ -61,7 +62,7 @@ void fragment() {
 			grey = color_mod * (color_offset + color_offset + clamp(sin(((TIME * line_speed) * 10.0) + fract(uv.x) * pow(line_size.x, line_size.y) + fract(uv.y) * pow(line_size.x, line_size.y)), 0.0125, 0.75)); // Varies between 0.0 and 1.0
 		}
         grey = fract(grey) * fract(grey);
-		color = vec4(grey, grey, grey, 1.0); // Grey shade with full opacity
+		color = vec4(grey, grey, grey, 1.0) * grid_color; // Grey shade with full opacity
     }
 	vec4 sample = texture(TEXTURE,(UV));
 	if (sample.a < 1.0) {
