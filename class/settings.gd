@@ -107,7 +107,7 @@ static func initialize_settings(_settings_name:String, _saveable:bool=false, _se
 		dir.make_dir_recursive(_settings_file_path)
 		dir.make_dir_recursive(DEFAULT_SETTINGS_FOLDER)
 		
-		var file_path: String = str(_settings_file_path + _settings_name.to_snake_case() + ".json")
+		var file_path: String = str(_settings_file_path + _settings_name.to_snake_case() + ".gsd")
 		settings.settings_file_path = file_path
 		
 		if all_settings.has(_settings_name):
