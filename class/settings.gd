@@ -148,11 +148,12 @@ func get_setting_value(setting_name:String) -> Variant:
 	if setting is Array and setting.size() == 1: setting = setting.get(0)
 	return setting
 
-func set_setting_value(setting_name:String, new_values:Array=[], update_ui:bool=true) -> void:
+func set_setting_value(setting_name:String, new_values:Array=[], update_ui:bool=true, also_save:bool=false) -> void:
 	var setting_dictionary: Dictionary = {}
 	if setting_properties.has(setting_name): setting_dictionary = setting_properties.get(setting_name)
 	if setting_dictionary.has("SETTING_VALUES"): setting_dictionary.set("SETTING_VALUES", new_values)
 	if update_ui: setting_value_was_set.emit(setting_name, new_values)
+	if also_save: save_settings()
 
 
 
