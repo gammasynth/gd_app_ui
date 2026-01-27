@@ -1,30 +1,32 @@
 shader_type canvas_item;
 
-uniform vec4 grid_color : source_color = vec4(0.5); // Grid line color
-uniform float grid_thickness = 0.1; // Thickness of grid lines (fraction of a pixel)
+uniform vec4 grid_color : source_color = vec4(0.5);
+uniform float grid_thickness = 0.05; // Relative to the cell size
+uniform float texture_scale = 1.0;
 uniform sampler2D back_texture : hint_default_transparent;
-uniform float texture_scale = 1.0; // Texture scale factor
-uniform float zoom = 1.0; // Camera zoom factor
 
 void fragment() {
-    // Get texture size
     vec2 tex_size = vec2(textureSize(back_texture, 0));
+    // We don't need 'zoom' uniform if we use screen-space derivatives
+    vec2 uv = UV * tex_size * texture_scale;
 
-    // Convert UV to pixel coordinates, accounting for scale and zoom
-    vec2 uv = UV * tex_size * texture_scale * zoom;
-
-    // Get fractional part for grid calculation
     vec2 grid = fract(uv);
 
-    // Adjust thickness based on zoom for consistent appearance
-    float adjusted_thickness = grid_thickness; // Prevent division by zero
+    // Calculate how much the UV changes per screen pixel
+    // This automatically accounts for camera zoom
+    vec2 derivative = fwidth(uv);
 
-    // Check if fragment is on a grid line
-    bool is_grid_line = grid.x < adjusted_thickness || grid.y < adjusted_thickness;
+    // Create a smooth edge for the grid lines
+    // This prevents the lines from disappearing or flickering when thin
+    vec2 target_thickness = vec2(grid_thickness);
+    vec2 line = smoothstep(target_thickness + derivative, target_thickness - derivative, grid);
 
-    // Clear color (as in original shader)
-    vec4 tex_color = vec4(0.0);
+    // Combine X and Y lines
+    float line_alpha = max(line.x, line.y);
 
-    // Output grid color if on a grid line, otherwise use clear color
-    COLOR = is_grid_line ? grid_color : tex_color;
+    // Keep lines at least 1 screen pixel wide even when zoomed out
+    // Optional: remove if you want lines to disappear naturally
+    line_alpha = clamp(line_alpha, 0.0, 1.0);
+
+    COLOR = vec4(grid_color.rgb, line_alpha * grid_color.a);
 }
