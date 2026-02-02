@@ -1,7 +1,7 @@
 
 
 uniform vec2 offset;
-uniform float scale:hint_range(0.5, 1000.0);
+uniform float scale;
 
 // Description : Array and textureless GLSL 2D simplex noise function.
 //      Author : Ian McEwan, Ashima Arts.

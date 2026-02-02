@@ -55,8 +55,8 @@ var cutscene : ModularCutscene :
 var splash_screen : ModularCutscene
 
 
-@export var current_scene : Control = null
-@export var requested_next_scene : Control = null
+@export var current_scene : Node = null
+@export var requested_next_scene : Node = null
 
 
 @export var alert_system_ui_path:String = "res://lib/gd_app_ui/scene/ui/alert_system_ui.tscn"
@@ -170,29 +170,22 @@ func cutscene_ended() -> void:
 
 
 
-static func request_scene(new_scene:Control) -> void:
+static func request_scene(new_scene:Node) -> void:
 	if not ui: return
-	
-	if ui.current_scene == null:
-		ui.set_scene(new_scene)
-	else:
-		ui.requested_next_scene = new_scene
+	ui.set_scene(new_scene)
 
 
-func set_scene(new_scene:Control) -> void:
-	if current_scene:
-		if has_node(current_scene.get_path()): remove_child(current_scene)
+func set_scene(new_scene:Node) -> void:
+	if current_scene and is_instance_valid(current_scene): current_scene.queue_free()
 	
 	add_child(new_scene)
 	current_scene = new_scene
-	
-	requested_next_scene = null
 
 
-func _process(delta: float) -> void:
+#func _process(delta: float) -> void:
 	# TODO
 	#  this should probably be done somewhere else!
-	if requested_next_scene != null: set_scene(requested_next_scene)
+	#if requested_next_scene != null: set_scene(requested_next_scene)
 
 
 static func resize(new_size:Vector2i=Vector2i(0, 0)) -> void:
