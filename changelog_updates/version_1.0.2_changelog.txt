@@ -1,0 +1,6 @@
+---
+
+version 1.0.2 release
+
+- implemented changelogs
+- added scene/dev/lib_gd_app_ui
