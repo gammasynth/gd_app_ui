@@ -1,0 +1,8 @@
+---
+
+version 1.0.3 release
+feb-7-2026-12pm-18-24s-cst
+
+- added static AppUI request_change_scene method
+
+- added AppUI change_scene method

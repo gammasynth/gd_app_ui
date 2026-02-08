@@ -174,12 +174,23 @@ static func request_scene(new_scene:Node) -> void:
 	if not ui: return
 	ui.set_scene(new_scene)
 
+static func request_change_scene(new_scene:Node) -> Error:
+	if not ui: return ERR_CANT_CONNECT
+	return await ui.change_scene(new_scene)
+
 
 func set_scene(new_scene:Node) -> void:
 	if current_scene and is_instance_valid(current_scene): current_scene.queue_free()
 	
 	add_child(new_scene)
 	current_scene = new_scene
+
+func change_scene(new_scene:Node) -> Error:
+	if current_scene and is_instance_valid(current_scene): current_scene.queue_free()
+	
+	await Make.child(new_scene, self)
+	current_scene = new_scene
+	return OK
 
 
 #func _process(delta: float) -> void:
