@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwu54n2r4muxr"]
+[gd_scene format=3 uid="uid://bwu54n2r4muxr"]
 
 [ext_resource type="Script" uid="uid://ckmpb2fj5gay7" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_loading_screen.gd" id="1_dhlv7"]
 [ext_resource type="PackedScene" uid="uid://b38qr3oeoi3k6" path="res://lib/gd_app_ui/scene/prefab/ui/modular_ui/generic_modular_ui/modular_background.tscn" id="1_w3brf"]
 
-[node name="modular_loading_screen" type="Control"]
+[node name="modular_loading_screen" type="Control" unique_id=930785460]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,15 +12,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_dhlv7")
-await_fadeout_time = null
 margin_all = 200
 bar_size = 5.0
 
-[node name="modular_background" parent="." instance=ExtResource("1_w3brf")]
+[node name="modular_background" parent="." unique_id=1040960862 instance=ExtResource("1_w3brf")]
 layout_mode = 1
 mouse_filter = 2
 
-[node name="menu_margin" type="MarginContainer" parent="."]
+[node name="menu_margin" type="MarginContainer" parent="." unique_id=30272497]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,19 +31,19 @@ theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 200
 
-[node name="vbox" type="VBoxContainer" parent="menu_margin"]
+[node name="vbox" type="VBoxContainer" parent="menu_margin" unique_id=1252234769]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="title_text" type="RichTextLabel" parent="menu_margin/vbox"]
+[node name="title_text" type="RichTextLabel" parent="menu_margin/vbox" unique_id=1374113427]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="splash_texture" type="TextureRect" parent="menu_margin/vbox"]
+[node name="splash_texture" type="TextureRect" parent="menu_margin/vbox" unique_id=2057252288]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="subtitle_text" type="RichTextLabel" parent="menu_margin/vbox"]
+[node name="subtitle_text" type="RichTextLabel" parent="menu_margin/vbox" unique_id=148703173]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -52,11 +51,11 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="event_text" type="RichTextLabel" parent="menu_margin/vbox"]
+[node name="event_text" type="RichTextLabel" parent="menu_margin/vbox" unique_id=1194400530]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="progress_bar" type="ProgressBar" parent="menu_margin/vbox"]
+[node name="progress_bar" type="ProgressBar" parent="menu_margin/vbox" unique_id=1860353709]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
@@ -65,7 +64,7 @@ show_percentage = false
 indeterminate = true
 editor_preview_indeterminate = false
 
-[node name="description_text" type="RichTextLabel" parent="menu_margin/vbox"]
+[node name="description_text" type="RichTextLabel" parent="menu_margin/vbox" unique_id=1121479686]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
