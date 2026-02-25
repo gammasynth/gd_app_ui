@@ -1,0 +1,7 @@
+---
+
+version 1.0.4 release
+feb-23-2026-6pm-51-0s-cst
+
+- added scene_changed(new_scene:Node) signal to AppUI class
+- implemented scene_changed signal emission into set_scene and change_scene functions in AppUI class

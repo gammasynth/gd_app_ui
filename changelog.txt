@@ -2,6 +2,13 @@ gd_app_ui | version changelog
 ___
 ---
 
+version 1.0.4 release
+feb-23-2026-6pm-51-0s-cst
+
+- added scene_changed(new_scene:Node) signal to AppUI class
+- implemented scene_changed signal emission into set_scene and change_scene functions in AppUI class
+---
+
 version 1.0.3 release
 feb-7-2026-12pm-18-24s-cst
 

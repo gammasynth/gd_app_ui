@@ -28,6 +28,7 @@ extends DatabaseMarginContainer
 
 class_name AppUI
 
+signal scene_changed(new_scene:Node)
 signal splashed
 
 static var app: App
@@ -184,12 +185,14 @@ func set_scene(new_scene:Node) -> void:
 	
 	add_child(new_scene)
 	current_scene = new_scene
+	scene_changed.emit(current_scene)
 
 func change_scene(new_scene:Node) -> Error:
 	if current_scene and is_instance_valid(current_scene): current_scene.queue_free()
 	
 	await Make.child(new_scene, self)
 	current_scene = new_scene
+	scene_changed.emit(current_scene)
 	return OK
 
 
